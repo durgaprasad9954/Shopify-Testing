@@ -209,7 +209,7 @@
         {%- if section.settings.video_cover != blank -%}
           {{
             section.settings.video_cover
-            | image_url: width: 1600
+            | image_url: width: 1200
             | image_tag: loading: 'lazy', alt: section.settings.video_heading
           }}
         {%- endif -%}
