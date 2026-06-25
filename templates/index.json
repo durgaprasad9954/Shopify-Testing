@@ -1,1 +1,456 @@
-{"sections":{"rich_text":{"type":"rich-text","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-3","full_width":true,"padding_top":4,"padding_bottom":4}},"featured_product_WD8rjg":{"type":"featured-product","blocks":{"text_7pzmFq":{"type":"text","settings":{"text":"{{ section.settings.product.vendor }}","text_style":"uppercase"}},"title_CdbmL3":{"type":"title","settings":{"heading_size":"h1"}},"rating_Wr3ate":{"type":"rating","settings":{}},"price_zR7tc4":{"type":"price","settings":{}},"variant_picker_naiXdi":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector_fcAbP8":{"type":"quantity_selector","settings":{}},"buy_buttons_FwcAiJ":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"share_TVti7p":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["text_7pzmFq","title_CdbmL3","rating_Wr3ate","price_zR7tc4","variant_picker_naiXdi","quantity_selector_fcAbP8","buy_buttons_FwcAiJ","share_TVti7p"],"name":"t:sections.featured-product.presets.name","settings":{"product":"wall-ball-target","color_scheme":"","secondary_background":false,"media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","media_position":"left","image_zoom":"lightbox","hide_variants":false,"enable_video_looping":false,"padding_top":36,"padding_bottom":36}},"multicolumn_U3xi3K":{"type":"multicolumn","blocks":{"column_Px7TUb":{"type":"column","settings":{"title":"Impact-Resistant Polymer","text":"<p>High-strength PETG built to absorb thousands of full-force wall ball reps.<\/p>","link_label":"","link":""}},"column_XgRAtW":{"type":"column","settings":{"title":"No Rack Required","text":"<p>Mounts with included hardware on any interior or exterior wall.<\/p>","link_label":"","link":""}},"column_QLW6HB":{"type":"column","settings":{"title":"Weather Resistance","text":"<p>Train indoors or out with no rust and no corrosion.<\/p>","link_label":"","link":""}}},"block_order":["column_Px7TUb","column_XgRAtW","column_QLW6HB"],"name":"t:sections.multicolumn.presets.name","settings":{"title":"","heading_size":"h1","image_width":"full","image_ratio":"adapt","button_label":"","button_link":"","columns_desktop":3,"column_alignment":"left","background_style":"primary","color_scheme":"","columns_mobile":"1","swipe_on_mobile":false,"padding_top":20,"padding_bottom":12}},"rich_text_9yHxVp":{"type":"rich-text","blocks":{"caption_QrWzYf":{"type":"caption","settings":{"caption":"A closer look","text_style":"caption-with-letter-spacing","text_size":"medium"}},"heading_WbUrQY":{"type":"heading","settings":{"heading":"What you're actually getting","heading_size":"h1"}}},"block_order":["caption_QrWzYf","heading_WbUrQY"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":24,"padding_bottom":12}},"image_with_text_GxajGY":{"type":"image-with-text","blocks":{"heading_AUcyXH":{"type":"heading","settings":{"heading":"Image with text","heading_size":"h1"}},"text_YabnK9":{"type":"text","settings":{"text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","text_style":"body"}},"button_yzTra8":{"type":"button","settings":{"button_label":"Button label","button_link":"","button_style_secondary":false}}},"block_order":["heading_AUcyXH","text_YabnK9","button_yzTra8"],"name":"t:sections.image-with-text.presets.name","settings":{"image":"shopify:\/\/shop_images\/sub90-wall-ball-target-front_f7d86b0f-a81e-4c87-9088-311545e57cac.jpg","height":"adapt","desktop_image_width":"medium","layout":"image_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"top","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":36,"padding_bottom":36}},"rich_text_Ldz6XK":{"type":"rich-text","blocks":{"heading_8XCV46":{"type":"heading","settings":{"heading":"You don't lose Hyrox on the run.You lose it on no-reps.","heading_size":"h1"}},"text_L4xXMK":{"type":"text","settings":{"text":"<p>Train against a taped square or a rack-mounted target at the wrong height and your depth and aim drift. Then race day comes, the judge's standard doesn't move, and every missed rep is wasted seconds you'll never claw back.<\/p>"}},"text_aKtEMM":{"type":"text","settings":{"text":"<p><strong>The SUB90 Wall Ball Target fixes the root cause. It bolts toany wall at true competition height, sits proud of the surface for real tactile feedback, and is sized to the standard, so the rep you drill at home is the rep that counts on the floor.<\/strong><\/p>"}},"button_LDTWBt":{"type":"button","settings":{"button_label":"TRAIN AT THE STANDARD.$39.99","button_link":"","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_8XCV46","text_L4xXMK","text_aKtEMM","button_LDTWBt"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}},"multirow_LYYbFw":{"type":"multirow","blocks":{"row_MPp4Xf":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/SUB_90_row_2.webp","caption":"Mount it once","heading":"Any wall becomes your station","text":"<p>Studs, wood, concrete, or brick, indoor or outdoor. Set it at competition height regardless of your ceiling clearance and free up the space your rack was hogging.<\/p><p>Tip: mounting on drywall without studs isn't recommended. These targets take a beating.<\/p>","button_label":"","button_link":""}},"row_aQYTbM":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/Sub.webp","caption":"Built to be abused","heading":"Ultra-strong PETG construction","text":"<p>Engineered to withstand intense sessions and harsh weather alike. Hit it as hard as you want. It shrugs off the impact and the elements, so you replace it never, not every season.<\/p>","button_label":"","button_link":""}},"row_PkrCfE":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/SUB_90_row_3.webp","caption":"Feel every rep","heading":"Tactile feedback, not guesswork","text":"<p>It sits out from the wall so you feel the contact and know instantly when you've hit it properly. No squinting, no second-guessing, just clean confirmed reps.<\/p>","button_label":"","button_link":""}}},"block_order":["row_MPp4Xf","row_aQYTbM","row_PkrCfE"],"name":"t:sections.multirow.presets.name","settings":{"image_height":"adapt","desktop_image_width":"medium","image_layout":"alternate-left","heading_size":"h1","text_style":"body","button_style":"secondary","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","row_color_scheme":"","padding_top":20,"padding_bottom":36}},"rich_text_En6eTR":{"type":"rich-text","blocks":{"heading_MAKc9H":{"type":"heading","settings":{"heading":"The target is the start. Here's the rest.","heading_size":"h1"}},"text_NEzDQ6":{"type":"text","settings":{"text":"<p>Somewhere to store the ball, grips for your hands, a way to mark the height. Grab it in one cart and save versus buying it piece by piece.<\/p>"}},"button_NWnUHG":{"type":"button","settings":{"button_label":"Button label","button_link":"","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}},"text_XYRFq7":{"type":"text","settings":{"text":"<p>Training as a pair, or both heights?<a href=\"https:\/\/sub90fitness.com\/products\/brick-haus-wall-ball-target-2-pack\">Grab the 2-pack<\/a>and add the height marking kit in the buy box.<\/p>"}}},"block_order":["heading_MAKc9H","text_NEzDQ6","button_NWnUHG","text_XYRFq7"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}},"image_with_text_xkTHQf":{"type":"image-with-text","blocks":{"heading_3FH9Kc":{"type":"heading","settings":{"heading":"The \"you chickened out\" guarantee","heading_size":"h1"}},"text_KkNpkU":{"type":"text","settings":{"text":"<p>Train on it for a full 30 days. If it isn't the most solid target you've hit, or anything is wrong with your order, email us and we'll make it right. Real humans, real promise.<\/p>","text_style":"body"}}},"block_order":["heading_3FH9Kc","text_KkNpkU"],"name":"t:sections.image-with-text.presets.name","settings":{"image":"shopify:\/\/shop_images\/3day.jpg","height":"small","desktop_image_width":"small","layout":"image_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"top","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":36,"padding_bottom":36}},"image_with_text_RDkViq":{"type":"image-with-text","blocks":{"caption_3ntzji":{"type":"caption","settings":{"caption":"From the people who make them","text_style":"caption-with-letter-spacing","text_size":"medium"}},"heading_TwTjBh":{"type":"heading","settings":{"heading":"We build these by hand, and we actually use them.","heading_size":"h1"}},"text_H9XCiR":{"type":"text","settings":{"text":"<p>\"We have a lot of fun making these targets, and we love helping people get active. Every target is designed, tested, and shipped by our small crew in Frisco, Texas, because we train on these same walls. If anything is ever wrong with your order, email me and we'll make it right. That's a promise from a human, not a help desk.\"<\/p>","text_style":"body"}},"button_D3kWbX":{"type":"button","settings":{"button_label":"Button label","button_link":"","button_style_secondary":false}}},"block_order":["caption_3ntzji","heading_TwTjBh","text_H9XCiR","button_D3kWbX"],"name":"t:sections.image-with-text.presets.name","settings":{"image":"shopify:\/\/shop_images\/IMG_2464.webp","height":"adapt","desktop_image_width":"medium","layout":"image_first","image_behavior":"none","content_layout":"no-overlap","desktop_content_position":"top","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"","color_scheme":"","padding_top":36,"padding_bottom":36}},"collage_pL47VX":{"type":"collage","blocks":{"image_UpEYD3":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/sub_mini3.webp"}},"product_PQ3F67":{"type":"product","settings":{"product":"sub-90-wall-ball-target","second_image":false}},"product_Fcg3tn":{"type":"product","settings":{"product":"sub90-wall-ball-target","second_image":false}}},"block_order":["image_UpEYD3","product_PQ3F67","product_Fcg3tn"],"name":"t:sections.collage.presets.name","settings":{"heading":"Real walls. Real athletes.","heading_size":"h1","desktop_layout":"right","mobile_layout":"column","card_styles":"product-card-wrapper","color_scheme":"","padding_top":36,"padding_bottom":36}},"video_3XQrx9":{"type":"video","name":"t:sections.video.presets.name","settings":{"heading":"90 seconds from box to first rep","heading_size":"h1","enable_video_looping":false,"video_url":"https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc","cover_image":"shopify:\/\/shop_images\/sub_mini2.webp","description":"","full_width":false,"color_scheme":"","padding_top":36,"padding_bottom":36}},"multicolumn_YBw9nV":{"type":"multicolumn","blocks":{"column_KQFEFX":{"type":"column","settings":{"title":"<strong>Marcus T.<\/strong>","text":"<p>\"Mounted it on my garage's exterior brick in 20 minutes. Finally training at real comp height, and my no-reps at my last Hyrox dropped to zero.\"<\/p>","link_label":"","link":""}},"column_dLiUjn":{"type":"column","settings":{"title":"Column","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","link_label":"","link":""}},"column_daeECr":{"type":"column","settings":{"title":"Column","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","link_label":"","link":""}}},"block_order":["column_KQFEFX","column_dLiUjn","column_daeECr"],"name":"t:sections.multicolumn.presets.name","settings":{"title":"Testimonials","heading_size":"h1","image_width":"full","image_ratio":"adapt","button_label":"","button_link":"","columns_desktop":3,"column_alignment":"left","background_style":"primary","color_scheme":"","columns_mobile":"1","swipe_on_mobile":false,"padding_top":36,"padding_bottom":36}},"collapsible_content_bHTpja":{"type":"collapsible-content","blocks":{"collapsible_row_qjLnAJ":{"type":"collapsible_row","settings":{"heading":"Can I mount it on drywall?","icon":"check_mark","row_content":"<p>It mounts to studs, wood, concrete, or brick, indoor or outdoor. Mounting on drywall without studs isn't recommended, because these targets are built to take heavy impact and need a solid anchor.<\/p>","page":""}},"collapsible_row_ycTngT":{"type":"collapsible_row","settings":{"heading":"Will it survive outdoors?","icon":"check_mark","row_content":"<p>Yes. It's made from ultra-strong PETG that resists both intense training and harsh weather, with no rust or corrosion, indoors or out.<\/p>","page":""}},"collapsible_row_eTtiw4":{"type":"collapsible_row","settings":{"heading":"Is it true competition height?","icon":"check_mark","row_content":"<p>Because it's wall-mounted, you set it at competition height regardless of your ceiling clearance. It's also sized slightly smaller than the competition plate so your training reps build race-day precision.<\/p>","page":""}},"collapsible_row_w3K3hA":{"type":"collapsible_row","settings":{"heading":"How fast does it ship?","icon":"check_mark","row_content":"<p>Free US ground shipping on every order, shipped from Frisco, TX. Order before the daily cutoff and it ships the same business day (Mon to Fri, 9 to 5 CST).<\/p>","page":""}},"collapsible_row_XjgGT3":{"type":"collapsible_row","settings":{"heading":"What if it's not for me?","icon":"check_mark","row_content":"<p>You're covered by our 30-day \"you chickened out\" return policy. If anything is wrong with your order, we'll gladly make it right.<\/p>","page":""}}},"block_order":["collapsible_row_qjLnAJ","collapsible_row_ycTngT","collapsible_row_eTtiw4","collapsible_row_w3K3hA","collapsible_row_XjgGT3"],"name":"t:sections.collapsible_content.presets.name","settings":{"caption":"","heading":"Collapsible content","heading_size":"h1","heading_alignment":"center","layout":"none","container_color_scheme":"","color_scheme":"","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}},"rich_text_znFibL":{"type":"rich-text","blocks":{"heading_yNMmtt":{"type":"heading","settings":{"heading":"Squat low. Aim high.","heading_size":"h1"}},"text_zMgJcM":{"type":"text","settings":{"text":"<p>Every rep should have purpose. Set the standard on your own wall and walk into race day with no doubt.<\/p>"}},"button_pnyRTE":{"type":"button","settings":{"button_label":"ADD TO CART.$34.99","button_link":"","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}},"text_NYyfbe":{"type":"text","settings":{"text":"<p>Free US shipping. 30-day returns. Built by athletes in the USA.<\/p>"}}},"block_order":["heading_yNMmtt","text_zMgJcM","button_pnyRTE","text_NYyfbe"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-2","full_width":true,"padding_top":40,"padding_bottom":52}}},"order":["rich_text","featured_product_WD8rjg","multicolumn_U3xi3K","rich_text_9yHxVp","image_with_text_GxajGY","rich_text_Ldz6XK","multirow_LYYbFw","rich_text_En6eTR","image_with_text_xkTHQf","image_with_text_RDkViq","collage_pL47VX","video_3XQrx9","multicolumn_YBw9nV","collapsible_content_bHTpja","rich_text_znFibL"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "variants": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "setup_target": {
+          "type": "setup",
+          "settings": {
+            "badge": "",
+            "title": "Just the Target",
+            "text": "One wall, one station. The classic.",
+            "price": "$34.99",
+            "compare_price": "",
+            "save_text": ""
+          }
+        },
+        "setup_kit": {
+          "type": "setup",
+          "settings": {
+            "badge": "Most popular",
+            "title": "HYROX Home Kit",
+            "text": "Target + speed jump rope + palm grips.",
+            "price": "$74.99",
+            "compare_price": "$89.00",
+            "save_text": "Save $14"
+          }
+        },
+        "setup_complete": {
+          "type": "setup",
+          "settings": {
+            "badge": "",
+            "title": "Complete Setup",
+            "text": "Target + storage rack + floor tiles + chalk.",
+            "price": "$99.99",
+            "compare_price": "$120.00",
+            "save_text": "Save $20"
+          }
+        },
+        "addon_height": {
+          "type": "addon",
+          "settings": {
+            "title": "SUB90 height marking kit +$12",
+            "text": "Vinyl markers for the 9ft and 10ft lines. SUB90 only."
+          }
+        },
+        "addon_chalk": {
+          "type": "addon",
+          "settings": {
+            "title": "Gym chalk block +$9",
+            "text": "Dry hands, no dropped reps. Weighs nothing."
+          }
+        },
+        "buy": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        }
+      },
+      "block_order": [
+        "variants",
+        "setup_target",
+        "setup_kit",
+        "setup_complete",
+        "addon_height",
+        "addon_chalk",
+        "buy"
+      ],
+      "settings": {
+        "featured_product": "sub90-wall-ball-target",
+        "color_scheme": "scheme-2",
+        "badge_left": "★ Bestseller",
+        "badge_right": "🇺🇸 Made in USA",
+        "gallery_hint": "Hover to zoom. Click to expand.",
+        "thumbs_label": "Product images",
+        "gallery_chip_1": "Impact-Resistant\nPETG",
+        "gallery_chip_2": "Indoor +\nOutdoor",
+        "gallery_chip_3": "Patent\nPending",
+        "eyebrow": "Built for Hyrox-style training¹",
+        "subtitle": "Wall-Mounted. Competition Height.",
+        "review_label": "4 verified reviews",
+        "review_note": "Loved by garage-gym and Hyrox athletes",
+        "compare_price_text": "",
+        "shipping_note": "USD. Free US shipping, calculated at checkout. Ships from Frisco, TX.",
+        "benefit_1": "Free US shipping",
+        "benefit_2": "30-day returns",
+        "benefit_3": "Made in the USA",
+        "setup_heading": "Choose your setup",
+        "setup_note": "Most pick the HYROX Home Kit",
+        "addon_heading": "Add the essentials?",
+        "addon_subtitle": "Two quick adds most athletes grab.",
+        "countdown_prefix": "Order within",
+        "countdown_time": "13:21:43",
+        "countdown_suffix": "to ship today",
+        "signature_badge": "S90",
+        "signature_copy": "Packed and shipped by the small SUB90 crew in Frisco, TX. A real person answers info@sub90fitness.com within 24 hours.",
+        "service_title_1": "🚚 Free Ground Shipping",
+        "service_body_1": "On all US orders. Shipping policy.",
+        "service_title_2": "↩️ 30-Day Returns",
+        "service_body_2": "Our \"you chickened out\" guarantee. Return policy.",
+        "lightbox_button_label": "Open image in full screen",
+        "sticky_label": "SUB90 Target",
+        "sticky_title": "SUB90 Target",
+        "sticky_button": "Add to Cart"
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "number": "01",
+            "title": "Impact-Resistant Polymer",
+            "text": "High-strength PETG built to absorb thousands of full-force wall ball reps."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "number": "02",
+            "title": "No Rack Required",
+            "text": "Mounts with included hardware on any interior or exterior wall."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "number": "03",
+            "title": "Weather Resistant",
+            "text": "Train indoors or out with no rust and no corrosion."
+          }
+        },
+        "hotspot_1": {
+          "type": "hotspot",
+          "settings": {
+            "number": "1",
+            "title": "Impact-resistant PETG plate",
+            "text": "Takes thousands of full-force reps without cracking, in heat or cold."
+          }
+        },
+        "hotspot_2": {
+          "type": "hotspot",
+          "settings": {
+            "number": "2",
+            "title": "Stands off the wall",
+            "text": "The plate sits proud of the surface so you feel a clean, confirmed hit."
+          }
+        },
+        "hotspot_3": {
+          "type": "hotspot",
+          "settings": {
+            "number": "3",
+            "title": "Sized to the standard",
+            "text": "A touch smaller than the competition plate, so training builds race-day precision."
+          }
+        },
+        "hotspot_4": {
+          "type": "hotspot",
+          "settings": {
+            "number": "4",
+            "title": "Solid mounting base",
+            "text": "Includes hardware for studs, wood, concrete, or brick, indoor or outdoor."
+          }
+        },
+        "story_1": {
+          "type": "story",
+          "settings": {
+            "image": "shopify://shop_images/Sub.webp",
+            "caption": "Mount it once",
+            "heading": "Any wall becomes your station",
+            "text": "<p>Studs, wood, concrete, or brick, indoor or outdoor. Set it at competition height regardless of your ceiling clearance and free up the space your rack was hogging.</p>",
+            "note": "Tip: mounting on drywall without studs isn't recommended. These targets take a beating."
+          }
+        },
+        "story_2": {
+          "type": "story",
+          "settings": {
+            "image": "shopify://shop_images/SUB_90_row_2.webp",
+            "caption": "Built to be abused",
+            "heading": "Ultra-strong PETG construction",
+            "text": "<p>Engineered to withstand intense sessions and harsh weather alike. Hit it as hard as you want. It shrugs off the impact and the elements, so you replace it never, not every season.</p>",
+            "note": ""
+          }
+        },
+        "story_3": {
+          "type": "story",
+          "settings": {
+            "image": "shopify://shop_images/SUB_90_row_3.webp",
+            "caption": "Feel every rep",
+            "heading": "Tactile feedback, not guesswork",
+            "text": "<p>It sits out from the wall so you feel the contact and know instantly when you've hit it properly. No squinting, no second-guessing, just clean confirmed reps.</p>",
+            "note": ""
+          }
+        },
+        "bundle_1": {
+          "type": "bundle",
+          "settings": {
+            "badge": "Most popular",
+            "title": "HYROX Home Kit",
+            "text": "Target + speed jump rope + palm grips. The full race-prep package for one athlete.",
+            "price": "$74.99",
+            "compare_price": "$89",
+            "button_label": "Choose this setup"
+          }
+        },
+        "bundle_2": {
+          "type": "bundle",
+          "settings": {
+            "badge": "",
+            "title": "Complete Setup",
+            "text": "Target + storage rack + floor tiles (4-pack) + chalk. Everything to turn a bare wall into a finished station.",
+            "price": "$99.99",
+            "compare_price": "$120",
+            "button_label": "Choose this setup"
+          }
+        },
+        "social_1": {
+          "type": "social",
+          "settings": {
+            "image": "shopify://shop_images/this-is-very-close-just-maybe-hands-on-hips-and-more-sweaty-and-just-finished-a-hyrox-style-competition.png",
+            "handle": "@mike_trains"
+          }
+        },
+        "social_2": {
+          "type": "social",
+          "settings": {
+            "image": "shopify://shop_images/White_Black_Target.jpg",
+            "handle": "@hyrox.dana"
+          }
+        },
+        "social_3": {
+          "type": "social",
+          "settings": {
+            "image": "shopify://shop_images/151A1110_ccecfbc8-c901-48c9-9933-6c33a8ea53e4.jpg",
+            "handle": "@coachwill"
+          }
+        },
+        "social_4": {
+          "type": "social",
+          "settings": {
+            "image": "shopify://shop_images/151A1210-3.png",
+            "handle": "@liftwithjas"
+          }
+        },
+        "comparison_1": {
+          "type": "comparison",
+          "settings": {
+            "feature": "True competition height, any room",
+            "ours": "✓",
+            "taped": "Depends on ceiling",
+            "rack": "Limited by rack"
+          }
+        },
+        "comparison_2": {
+          "type": "comparison",
+          "settings": {
+            "feature": "Tactile \"you hit it\" feedback",
+            "ours": "✓",
+            "taped": "No",
+            "rack": "Varies"
+          }
+        },
+        "comparison_3": {
+          "type": "comparison",
+          "settings": {
+            "feature": "Sized to reduce no-reps",
+            "ours": "✓",
+            "taped": "No",
+            "rack": "No"
+          }
+        },
+        "comparison_4": {
+          "type": "comparison",
+          "settings": {
+            "feature": "Indoor and outdoor, weatherproof",
+            "ours": "✓",
+            "taped": "No",
+            "rack": "Rarely"
+          }
+        },
+        "comparison_5": {
+          "type": "comparison",
+          "settings": {
+            "feature": "Frees up floor space",
+            "ours": "✓",
+            "taped": "Yes",
+            "rack": "No"
+          }
+        },
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "initials": "MT",
+            "name": "Marcus T.",
+            "meta": "Dallas, TX. Verified buyer ✓",
+            "quote": "\"Mounted it on my garage's exterior brick in 20 minutes. Finally training at real comp height, and my no-reps at my last Hyrox dropped to zero.\""
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "initials": "DR",
+            "name": "Dana R.",
+            "meta": "Austin, TX. Verified buyer ✓",
+            "quote": "\"The tactile feedback is the part I didn't know I needed. You feel the hit, so you stop guessing and start grooving the rep.\""
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "initials": "CW",
+            "name": "Coach Will",
+            "meta": "Houston, TX. Verified buyer ✓",
+            "quote": "\"Left it outside through a Texas summer and a cold snap. Zero rust, zero warping. Built like a tank for the price.\""
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "initials": "JS",
+            "name": "Jas S.",
+            "meta": "Frisco, TX. Verified buyer ✓",
+            "quote": "\"Setup was simple and the build quality is unreal for the price. My whole crew wants one now.\""
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I mount it on drywall?",
+            "answer": "It mounts to studs, wood, concrete, or brick, indoor or outdoor. Mounting on drywall without studs isn't recommended, because these targets are built to take heavy impact and need a solid anchor."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it survive outdoors?",
+            "answer": "Yes. It's made from ultra-strong PETG that resists both intense training and harsh weather, with no rust or corrosion, indoors or out."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it true competition height?",
+            "answer": "Because it's wall-mounted, you set it at competition height regardless of your ceiling clearance. It's also sized slightly smaller than the competition plate so your training reps build race-day precision."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How fast does it ship?",
+            "answer": "Free US ground shipping on every order, shipped from Frisco, TX. Order before the daily cutoff and it ships the same business day."
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it's not for me?",
+            "answer": "You're covered by our 30-day \"you chickened out\" return policy. If anything is wrong with your order, we'll gladly make it right."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "hotspot_1",
+        "hotspot_2",
+        "hotspot_3",
+        "hotspot_4",
+        "story_1",
+        "story_2",
+        "story_3",
+        "bundle_1",
+        "bundle_2",
+        "social_1",
+        "social_2",
+        "social_3",
+        "social_4",
+        "comparison_1",
+        "comparison_2",
+        "comparison_3",
+        "comparison_4",
+        "comparison_5",
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "hotspots_caption": "A closer look",
+        "hotspots_heading": "What you're actually getting",
+        "hotspots_image": "shopify://shop_images/IMG_2507front.webp",
+        "problem_caption": "The no-rep problem",
+        "problem_heading": "You don't lose Hyrox on the run. You lose it on no-reps.",
+        "problem_text_1": "Train against a taped square or a rack-mounted target at the wrong height and your depth and aim drift. Then race day comes, the judge's standard doesn't move, and every missed rep is wasted seconds you'll never claw back.",
+        "problem_text_2": "The SUB90 Wall Ball Target fixes the root cause. It bolts to any wall at true competition height, sits proud of the surface for real tactile feedback, and is sized to the standard, so the rep you drill at home is the rep that counts on the floor.",
+        "problem_cta": "Train at the standard. $34.99",
+        "bundles_caption": "Build the whole station",
+        "bundles_heading": "The target is the start. Here's the rest.",
+        "bundles_text": "Somewhere to store the ball, grips for your hands, a way to mark the height. Grab it in one cart and save versus buying it piece by piece.",
+        "bundles_note": "Training as a pair, or both heights? Grab the 2-pack and add the height marking kit in the buy box.",
+        "guarantee_caption": "30 Day",
+        "guarantee_heading": "The \"you chickened out\" guarantee",
+        "guarantee_text": "Train on it for a full 30 days. If it isn't the most solid target you've hit, or anything is wrong with your order, email us and we'll make it right. Real humans, real promise.",
+        "guarantee_image": "shopify://shop_images/3day.jpg",
+        "team_caption": "From the people who make them",
+        "team_heading": "We build these by hand, and we actually use them.",
+        "team_quote": "\"We have a lot of fun making these targets, and we love helping people get active. Every target is designed, tested, and shipped by our small crew in Frisco, Texas, because we train on these same walls. If anything is ever wrong with your order, email me and we'll make it right. That's a promise from a human, not a help desk.\"",
+        "team_signoff": "The SUB90 Fitness team • Frisco, TX • info@sub90fitness.com",
+        "team_image": "shopify://shop_images/IMG_2464.webp",
+        "social_caption": "Where SUB90 lives",
+        "social_heading": "Real walls. Real athletes.",
+        "social_link": "https://www.instagram.com/sub90fitness",
+        "social_link_label": "Tag us @sub90fitness ↗",
+        "video_caption": "See it in action",
+        "video_heading": "90 seconds from box to first rep",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_button": "Play product demo video",
+        "video_cover": "shopify://shop_images/sub_mini2.webp",
+        "comparison_heading": "Why athletes ditch the alternatives",
+        "comparison_col_1": "Feature",
+        "comparison_col_2": "SUB90 Target",
+        "comparison_col_3": "Taped square",
+        "comparison_col_4": "Rack-mounted target",
+        "rating_number": "5.0",
+        "rating_copy": "Rated 5 out of 5 stars from 4 verified reviews.",
+        "faq_heading": "Questions, answered",
+        "final_heading": "Squat low. Aim high.",
+        "final_text": "Every rep should have purpose. Set the standard on your own wall and walk into race day with no doubt.",
+        "final_button": "Add to Cart. $34.99",
+        "final_meta_1": "Free US shipping.",
+        "final_meta_2": "30-day returns.",
+        "final_meta_3": "Built by athletes in the USA."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclosures"
+  ]
+}
