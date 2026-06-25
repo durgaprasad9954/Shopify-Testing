@@ -79,7 +79,7 @@
                 {%- if block.settings.image != blank -%}
                   {{
                     block.settings.image
-                    | image_url: width: 1024
+                    | image_url: width: 1200
                     | image_tag: class: 'sub90-story__media', loading: 'lazy', alt: block.settings.heading
                   }}
                 {%- endif -%}
@@ -158,7 +158,7 @@
           {%- if section.settings.team_image != blank -%}
             {{
               section.settings.team_image
-              | image_url: width: 1024
+              | image_url: width: 1200
               | image_tag: class: 'sub90-story__media', loading: 'lazy', alt: section.settings.team_heading
             }}
           {%- endif -%}
