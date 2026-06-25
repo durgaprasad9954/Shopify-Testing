@@ -1,0 +1,846 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        ink:'#0A0A0A', coal:'#141414', action:'#FF5A1F', actionDark:'#E8480F',
+        orangeInk:'#B23A0F', paper:'#F7F5F2'
+      },
+      fontFamily: { display:['Anton','sans-serif'], sans:['Inter','sans-serif'] },
+      boxShadow: { cta:'0 12px 34px -10px rgba(255,90,31,0.6)', soft:'0 8px 30px -12px rgba(0,0,0,0.25)' },
+    } },
+  };
+</script>
+{%- liquid
+  assign landing_product_handle = 'sub90-wall-ball-target'
+  assign landing_product = all_products[landing_product_handle]
+  if landing_product == blank
+    for product_item in collections.all.products
+      if product_item.title == 'SUB90 Wall Ball Target'
+        assign landing_product = product_item
+        break
+      endif
+    endfor
+  endif
+  if landing_product == blank
+    for product_item in collections.all.products
+      if product_item.title contains 'SUB90 Wall Ball Target'
+        assign landing_product = product_item
+        break
+      endif
+    endfor
+  endif
+
+  assign fallback_variant_id = '45731971465299'
+  assign fallback_product_id = '8004163469395'
+  assign variant_black_white = fallback_variant_id
+  assign variant_black_orange = fallback_variant_id
+  assign variant_white_black = fallback_variant_id
+  assign variant_white_blue = fallback_variant_id
+
+  if landing_product
+    assign fallback_variant_id = landing_product.selected_or_first_available_variant.id
+    assign fallback_product_id = landing_product.id
+    assign variant_black_white = fallback_variant_id
+    assign variant_black_orange = fallback_variant_id
+    assign variant_white_black = fallback_variant_id
+    assign variant_white_blue = fallback_variant_id
+    for variant in landing_product.variants
+      case variant.title
+        when 'Black / White'
+          assign variant_black_white = variant.id
+        when 'Black / Orange'
+          assign variant_black_orange = variant.id
+        when 'White / Black'
+          assign variant_white_black = variant.id
+        when 'White / Blue'
+          assign variant_white_blue = variant.id
+      endcase
+    endfor
+  endif
+-%}
+<div class="sub90-page-template bg-white antialiased">
+
+<a href="#buybox" class="skip focus-ring">Skip to product</a>
+
+<!-- ANNOUNCEMENT MARQUEE -->
+<div class="bg-ink text-white text-[11px] sm:text-xs font-semibold tracking-wide overflow-hidden" aria-hidden="true">
+  <div class="flex whitespace-nowrap marquee">
+    <div class="flex shrink-0">
+      <span class="px-6 py-2">WE ❤️ LEG DAY</span><span class="px-6 py-2 text-action">◎</span>
+      <span class="px-6 py-2">FREE US GROUND SHIPPING</span><span class="px-6 py-2 text-action">◎</span>
+      <span class="px-6 py-2">MADE BY ATHLETES IN FRISCO, TX 🇺🇸</span><span class="px-6 py-2 text-action">◎</span>
+      <span class="px-6 py-2">30-DAY "YOU CHICKENED OUT" RETURNS</span><span class="px-6 py-2 text-action">◎</span>
+    </div>
+    <div class="flex shrink-0">
+      <span class="px-6 py-2">WE ❤️ LEG DAY</span><span class="px-6 py-2 text-action">◎</span>
+      <span class="px-6 py-2">FREE US GROUND SHIPPING</span><span class="px-6 py-2 text-action">◎</span>
+      <span class="px-6 py-2">MADE BY ATHLETES IN FRISCO, TX 🇺🇸</span><span class="px-6 py-2 text-action">◎</span>
+      <span class="px-6 py-2">30-DAY "YOU CHICKENED OUT" RETURNS</span><span class="px-6 py-2 text-action">◎</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-neutral-200">
+  <div class="sub90-header max-w-7xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4">
+    <a href="{{ routes.root_url }}" class="font-display text-2xl tracking-wide focus-ring" aria-label="SUB90 Fitness home">SUB<span class="text-orangeInk">90</span></a>
+    <nav class="sub90-header__nav items-center justify-center justify-self-center gap-8 text-sm font-semibold" aria-label="Primary">
+      <a href="{{ routes.root_url }}" class="hover:text-orangeInk focus-ring">Home</a>
+      <a href="/collections/all" class="hover:text-orangeInk focus-ring">Shop</a>
+      <a href="#founder-note" class="hover:text-orangeInk focus-ring">About</a>
+      <a href="#footer-contact" class="hover:text-orangeInk focus-ring">Contact</a>
+    </nav>
+    <div class="flex items-center justify-end gap-3 justify-self-end">
+      <a href="{{ routes.cart_url }}" class="relative inline-flex items-center focus-ring" aria-label="Cart, items:">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6L5 3H2"/></svg>
+        <span id="cartCount" class="absolute -top-2 -right-2 bg-action text-ink text-[10px] font-extrabold w-4 h-4 rounded-full grid place-items-center">0</span>
+      </a>
+      <button id="menuBtn" class="sub90-header__menu-btn focus-ring" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-neutral-200 bg-white" aria-label="Mobile">
+    <div class="px-4 py-2 flex flex-col text-sm font-semibold">
+      <a href="{{ routes.root_url }}" class="py-3 border-b border-neutral-100 focus-ring">Home</a>
+      <a href="/collections/all" class="py-3 border-b border-neutral-100 focus-ring">Shop</a>
+      <a href="#founder-note" class="py-3 border-b border-neutral-100 focus-ring">About</a>
+      <a href="#footer-contact" class="py-3 focus-ring">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+<!-- BUY SECTION -->
+<section id="buybox" class="relative bg-paper">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 lg:pt-10 pb-12">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+
+      <!-- GALLERY -->
+      <div class="lg:sticky lg:top-24 self-start">
+        <figure class="relative rounded-3xl overflow-hidden bg-white border border-neutral-200 shadow-soft zoom-wrap">
+          <span class="absolute top-4 left-4 z-10 bg-ink text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">★ Bestseller</span>
+          <span class="absolute top-4 right-4 z-10 bg-white/90 text-ink text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border border-neutral-200">🇺🇸 Made in USA</span>
+          <button id="lightboxBtn" class="block w-full focus-ring" aria-label="Open image in full screen">
+            <img id="mainImage" src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-main.jpg?v=1782277347"
+                 alt="SUB90 wall ball target mounted on a wall at competition height" class="zoom-img w-full aspect-square object-cover" />
+          </button>
+          <span class="absolute bottom-4 left-4 z-10 bg-black/55 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full backdrop-blur pointer-events-none">Hover to zoom. Click to expand.</span>
+        </figure>
+        <div class="mt-3 flex gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-1" id="thumbs" role="list" aria-label="Product images"></div>
+        <div class="mt-3 grid grid-cols-3 gap-2 text-center text-[11px] font-semibold text-neutral-600">
+          <div class="rounded-lg bg-white border border-neutral-200 py-2">Impact-Resistant<br>PETG</div>
+          <div class="rounded-lg bg-white border border-neutral-200 py-2">Indoor +<br>Outdoor</div>
+          <div class="rounded-lg bg-white border border-neutral-200 py-2">Patent<br>Pending</div>
+        </div>
+      </div>
+
+      <!-- BUY BOX -->
+      <div>
+        <p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">Built for Hyrox-style training<sup class="text-neutral-500">1</sup></p>
+        <h1 class="font-display headline text-4xl sm:text-5xl xl:text-6xl mt-2">SUB90 Wall Ball Target <span class="block text-2xl sm:text-3xl text-neutral-600 mt-1">Wall-Mounted. Competition Height.</span></h1>
+
+        <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <a href="#reviews" class="inline-flex items-center gap-2 focus-ring">
+            <span class="text-orangeInk text-lg leading-none" aria-hidden="true">★★★★★</span>
+            <span class="sr-only">Rated 5 out of 5 stars.</span>
+            <span class="text-sm font-semibold underline decoration-neutral-300 underline-offset-2">4 verified reviews</span>
+          </a>
+          <span class="text-sm font-semibold text-neutral-600">Loved by garage-gym and Hyrox athletes</span>
+        </div>
+
+        <div class="mt-5 flex flex-wrap items-end gap-3">
+          <span id="priceTag" class="font-display text-4xl">$34.99</span>
+          <span id="comparePrice" class="text-base font-semibold text-neutral-500 line-through pb-1 hidden"></span>
+          <span id="saveBadge" class="hidden bg-action/10 text-orangeInk text-xs font-bold px-2 py-1 rounded-full pb-1"></span>
+        </div>
+        <p class="text-xs text-neutral-600 mt-1">USD. Free US shipping, calculated at checkout. Ships from Frisco, TX.</p>
+
+        <ul class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm font-semibold">
+          <li class="flex items-center gap-2"><span class="text-orangeInk" aria-hidden="true">✓</span> Free US shipping</li>
+          <li class="flex items-center gap-2"><span class="text-orangeInk" aria-hidden="true">✓</span> 30-day returns</li>
+          <li class="flex items-center gap-2"><span class="text-orangeInk" aria-hidden="true">✓</span> Made in the USA</li>
+        </ul>
+
+        <!-- VARIANTS -->
+        <div class="mt-7">
+          <span id="variantLabel" class="text-sm font-bold uppercase tracking-wide">Color: <span id="variantName" class="text-neutral-600 font-semibold normal-case tracking-normal">Black / White</span></span>
+          <div class="mt-3 flex flex-wrap gap-3" id="variants" role="radiogroup" aria-labelledby="variantLabel"></div>
+        </div>
+
+        <!-- PRIMARY CTA -->
+        <div class="mt-6">
+          <button id="addToCart" class="w-full bg-action hover:bg-actionDark text-ink font-extrabold text-lg uppercase tracking-wide rounded-xl py-4 shadow-cta transition focus-ring">
+            Add to Cart. <span id="ctaPrice">$34.99</span>
+          </button>
+          <div class="mt-3 flex items-center justify-center gap-2 text-sm font-semibold text-neutral-700">
+            <span class="relative flex h-2.5 w-2.5" aria-hidden="true"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-action opacity-60"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-action"></span></span>
+            Order within <span id="countdown" class="font-extrabold text-ink tabular-nums">--:--:--</span> to ship today
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / ICON ROW -->
+<section class="bg-ink text-white relative grain">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center reveal">
+    <div><div class="text-action font-display text-3xl" aria-hidden="true">01</div><h2 class="font-display text-xl mt-1 uppercase">Impact-Resistant Polymer</h2><p class="text-neutral-300 text-sm mt-2 max-w-xs mx-auto">High-strength PETG built to absorb thousands of full-force wall ball reps.</p></div>
+    <div><div class="text-action font-display text-3xl" aria-hidden="true">02</div><h2 class="font-display text-xl mt-1 uppercase">No Rack Required</h2><p class="text-neutral-300 text-sm mt-2 max-w-xs mx-auto">Mounts with included hardware on any interior or exterior wall.</p></div>
+    <div><div class="text-action font-display text-3xl" aria-hidden="true">03</div><h2 class="font-display text-xl mt-1 uppercase">Weather Resistant</h2><p class="text-neutral-300 text-sm mt-2 max-w-xs mx-auto">Train indoors or out with no rust and no corrosion.</p></div>
+  </div>
+</section>
+
+<!-- ANNOTATED ANATOMY -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+  <div class="text-center max-w-2xl mx-auto reveal">
+    <p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">A closer look</p>
+    <h2 class="font-display headline text-3xl sm:text-5xl mt-2">What you're actually getting</h2>
+  </div>
+  <div class="mt-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <figure class="relative rounded-3xl overflow-hidden border border-neutral-200 bg-paper reveal">
+      <img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-front.jpg?v=1782277402" alt="Front view of the SUB90 target showing the plate and mounting base" class="w-full aspect-square object-cover" />
+      <span class="absolute top-3 left-3 w-7 h-7 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm" aria-hidden="true">1</span>
+      <span class="absolute top-1/2 right-4 w-7 h-7 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm" aria-hidden="true">2</span>
+      <span class="absolute bottom-6 left-1/3 w-7 h-7 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm" aria-hidden="true">3</span>
+      <span class="absolute bottom-4 right-6 w-7 h-7 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm" aria-hidden="true">4</span>
+    </figure>
+    <ol class="space-y-4 reveal">
+      <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm">1</span><div><p class="font-bold">Impact-resistant PETG plate</p><p class="text-sm text-neutral-700">Takes thousands of full-force reps without cracking, in heat or cold.</p></div></li>
+      <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm">2</span><div><p class="font-bold">Stands off the wall</p><p class="text-sm text-neutral-700">The plate sits proud of the surface so you feel a clean, confirmed hit.</p></div></li>
+      <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm">3</span><div><p class="font-bold">Sized to the standard</p><p class="text-sm text-neutral-700">A touch smaller than the competition plate, so training builds race-day precision.</p></div></li>
+      <li class="flex gap-4"><span class="w-7 h-7 shrink-0 rounded-full bg-action text-ink font-extrabold grid place-items-center text-sm">4</span><div><p class="font-bold">Solid mounting base</p><p class="text-sm text-neutral-700">Includes hardware for studs, wood, concrete, or brick, indoor or outdoor.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PAS -->
+<section class="relative overflow-hidden bg-coal text-white grain">
+  <div class="absolute inset-0 bullseye-bg opacity-40" aria-hidden="true"></div>
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center reveal">
+    <p class="text-action font-bold uppercase tracking-[0.18em] text-xs">The no-rep problem</p>
+    <h2 class="font-display headline text-3xl sm:text-6xl mt-3">You don't lose Hyrox on the run.<br class="hidden sm:block"> You lose it on no-reps.</h2>
+    <p class="text-lg text-neutral-200 mt-6 max-w-2xl mx-auto">Train against a taped square or a rack-mounted target at the wrong height and your depth and aim drift. Then race day comes, the judge's standard doesn't move, and every missed rep is wasted seconds you'll never claw back.</p>
+    <p class="text-lg font-semibold mt-5 max-w-2xl mx-auto">The SUB90 Wall Ball Target fixes the root cause. It bolts to <span class="text-action">any wall at true competition height</span>, sits proud of the surface for real tactile feedback, and is sized to the standard, so the rep you drill at home is the rep that counts on the floor.</p>
+    <a href="#buybox" class="js-scrolltop inline-block mt-8 bg-action hover:bg-actionDark text-ink font-extrabold uppercase text-sm rounded-xl px-6 py-3 shadow-cta transition focus-ring">Train at the standard. $34.99</a>
+  </div>
+</section>
+
+<!-- FEATURE -> BENEFIT -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-16 sm:space-y-24">
+  <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center reveal">
+    <img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-base-detail.png?v=1782277413" alt="Wall ball target mounting base and hardware detail" class="rounded-3xl border border-neutral-200 w-full" />
+    <div><p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">Mount it once</p><h2 class="font-display headline text-3xl sm:text-4xl mt-2">Any wall becomes your station</h2><p class="text-neutral-700 mt-4 text-lg">Studs, wood, concrete, or brick, indoor or outdoor. Set it at competition height regardless of your ceiling clearance and free up the space your rack was hogging.</p><p class="text-sm text-neutral-600 mt-3">Tip: mounting on drywall without studs isn't recommended. These targets take a beating.</p></div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center reveal">
+    <div class="md:order-2"><img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-plate-detail.png?v=1782277421" alt="Close-up of the ultra-strong PETG target plate" class="rounded-3xl border border-neutral-200 w-full" /></div>
+    <div class="md:order-1"><p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">Built to be abused</p><h2 class="font-display headline text-3xl sm:text-4xl mt-2">Ultra-strong PETG construction</h2><p class="text-neutral-700 mt-4 text-lg">Engineered to withstand intense sessions and harsh weather alike. Hit it as hard as you want. It shrugs off the impact and the elements, so you replace it never, not every season.</p></div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center reveal">
+    <img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-side-view.png?v=1782277429" alt="Side view showing the target standing proud of the wall" class="rounded-3xl border border-neutral-200 w-full" />
+    <div><p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">Feel every rep</p><h2 class="font-display headline text-3xl sm:text-4xl mt-2">Tactile feedback, not guesswork</h2><p class="text-neutral-700 mt-4 text-lg">It sits out from the wall so you feel the contact and know instantly when you've hit it properly. No squinting, no second-guessing, just clean confirmed reps.</p></div>
+  </div>
+</section>
+
+<!-- BUNDLES / COMPLETE THE SETUP -->
+<section id="bundles-section" class="bg-coal text-white relative grain">
+  <div class="absolute inset-0 bullseye-bg opacity-30" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 reveal">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="text-action font-bold uppercase tracking-[0.18em] text-xs">Build the whole station</p>
+      <h2 class="font-display headline text-3xl sm:text-5xl mt-2">The target is the start. Here's the rest.</h2>
+      <p class="text-neutral-300 mt-4 text-lg">Somewhere to store the ball, grips for your hands, a way to mark the height. Grab it in one cart and save versus buying it piece by piece.</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 max-w-3xl mx-auto">
+
+      <article class="rounded-3xl border-2 border-action bg-action/10 p-6 flex flex-col relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-action text-ink text-[10px] font-bold uppercase px-3 py-1 rounded-full">Most popular</span>
+        <h3 class="font-display text-2xl uppercase">HYROX Home Kit</h3>
+        <p class="mt-3 text-sm text-neutral-200 flex-1">Target + speed jump rope + palm grips. The full race-prep package for one athlete.</p>
+        <div class="mt-4 flex items-end gap-2">
+          <span class="font-display text-3xl">$74.99</span>
+          <span class="text-sm text-neutral-400 line-through pb-1">$89</span>
+        </div>
+        <button data-goto="hyrox" class="js-pick mt-4 w-full bg-action hover:bg-actionDark text-ink font-extrabold uppercase text-sm rounded-xl py-3 shadow-cta transition focus-ring">Choose this setup</button>
+      </article>
+
+      <article class="rounded-3xl border border-white/10 bg-white/5 p-6 flex flex-col">
+        <h3 class="font-display text-2xl uppercase">Complete Setup</h3>
+        <p class="mt-3 text-sm text-neutral-300 flex-1">Target + storage rack + floor tiles (4-pack) + chalk. Everything to turn a bare wall into a finished station.</p>
+        <div class="mt-4 flex items-end gap-2">
+          <span class="font-display text-3xl">$99.99</span>
+          <span class="text-sm text-neutral-400 line-through pb-1">$120</span>
+        </div>
+        <button data-goto="complete" class="js-pick mt-4 w-full bg-white/10 hover:bg-white/20 text-white font-bold uppercase text-sm rounded-xl py-3 transition focus-ring">Choose this setup</button>
+      </article>
+    </div>
+    <p class="text-center text-neutral-400 text-sm mt-6">Training as a pair, or both heights? <a href="/collections/all" class="underline text-white hover:text-action focus-ring">Grab the 2-pack</a> and add the height marking kit in the buy box.</p>
+  </div>
+</section>
+
+<!-- GUARANTEE BAND -->
+<section class="bg-paper">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-14 reveal">
+    <div class="rounded-3xl border-2 border-ink bg-white p-8 sm:p-10 grid sm:grid-cols-[auto_1fr] gap-6 items-center">
+      <div class="w-24 h-24 rounded-full bg-ink text-white grid place-items-center text-center font-display leading-none mx-auto sm:mx-0">
+        <span>30<span class="block text-[11px] tracking-wide mt-1">DAY</span></span>
+      </div>
+      <div class="text-center sm:text-left">
+        <h2 class="font-display headline text-2xl sm:text-3xl">The "you chickened out" guarantee</h2>
+        <p class="text-neutral-700 mt-3 text-lg">Train on it for a full 30 days. If it isn't the most solid target you've hit, or anything is wrong with your order, email us and we'll make it right. Real humans, real promise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<section id="founder-note" class="max-w-5xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-5 gap-10 items-center reveal">
+  <div class="md:col-span-2">
+    <figure class="relative rounded-3xl overflow-hidden border border-neutral-200 aspect-[4/5] bg-paper">
+      <img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-crew.jpg?v=1782277444" alt="The SUB90 crew with their wall ball targets" class="absolute inset-0 w-full h-full object-cover" />
+      <figcaption class="absolute bottom-4 left-4 z-10 bg-black/55 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full backdrop-blur">📷 Add a real photo of your crew here</figcaption>
+    </figure>
+  </div>
+  <div class="md:col-span-3">
+    <p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">From the people who make them</p>
+    <h2 class="font-display headline text-3xl sm:text-4xl mt-2">We build these by hand, and we actually use them.</h2>
+    <p class="text-neutral-700 mt-4 text-lg">"We have a lot of fun making these targets, and we love helping people get active. Every target is designed, tested, and shipped by our small crew in Frisco, Texas, because we train on these same walls. If anything is ever wrong with your order, email me and we'll make it right. That's a promise from a human, not a help desk."</p>
+    <div class="mt-5 flex items-center gap-3">
+      <span class="w-11 h-11 rounded-full bg-ink text-white font-display grid place-items-center" aria-hidden="true">S90</span>
+      <div><p class="font-bold leading-tight">The SUB90 Fitness team</p><p class="text-sm text-neutral-600 leading-tight">Frisco, TX. info@sub90fitness.com</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- UGC WALL -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 reveal">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">Where SUB90 lives</p>
+      <h2 class="font-display headline text-3xl sm:text-5xl mt-2">Real walls. Real athletes.</h2>
+    </div>
+    <a href="https://www.instagram.com/sub90fitness" class="font-bold underline decoration-action decoration-2 underline-offset-4 text-orangeInk focus-ring">Tag us @sub90fitness ↗</a>
+  </div>
+  <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+    <figure class="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-square"><img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-athlete.png?v=1782277455" alt="Athlete after a Hyrox-style session" class="w-full h-full object-cover" /><figcaption class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur">@mike_trains</figcaption></figure>
+    <figure class="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-square"><img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-white-black.jpg?v=1782277370" alt="Customer install on an outdoor wall" class="w-full h-full object-cover" /><figcaption class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur">@hyrox.dana</figcaption></figure>
+    <figure class="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-square"><img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-install-gym.jpg?v=1782277464" alt="Customer install in a box gym" class="w-full h-full object-cover" /><figcaption class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur">@coachwill</figcaption></figure>
+    <figure class="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-square"><img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-white-blue.png?v=1782277376" alt="Blue and white target install" class="w-full h-full object-cover" /><figcaption class="absolute bottom-2 left-2 bg-black/55 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur">@liftwithjas</figcaption></figure>
+  </div>
+</section>
+
+<!-- DEMO VIDEO -->
+<section class="bg-paper">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16 text-center reveal">
+    <p class="text-orangeInk font-bold uppercase tracking-[0.18em] text-xs">See it in action</p>
+    <h2 class="font-display headline text-3xl sm:text-5xl mt-2">90 seconds from box to first rep</h2>
+    <button id="videoBtn" class="group relative mt-8 block w-full rounded-3xl overflow-hidden border border-neutral-200 focus-ring" aria-label="Play product demo video" aria-haspopup="dialog">
+      <img src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-crew.jpg?v=1782277444" alt="SUB90 wall ball target demo" class="w-full aspect-video object-cover" />
+      <span class="absolute inset-0 grid place-items-center" aria-hidden="true"><span class="w-20 h-20 rounded-full bg-action text-ink grid place-items-center shadow-cta group-hover:scale-105 transition"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+    </button>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="max-w-5xl mx-auto px-4 sm:px-6 py-16 reveal">
+  <h2 class="font-display headline text-3xl sm:text-5xl text-center">Why athletes ditch the alternatives</h2>
+  <div class="mt-10 overflow-x-auto">
+    <table class="w-full text-sm border-collapse min-w-[560px]">
+      <caption class="sr-only">Comparison of the SUB90 target against a taped square and a rack-mounted target</caption>
+      <thead><tr>
+        <th scope="col" class="text-left p-4"><span class="sr-only">Feature</span></th>
+        <th scope="col" class="p-4 bg-ink text-white rounded-t-xl font-display text-lg uppercase">SUB90 Target</th>
+        <th scope="col" class="p-4 text-neutral-600 font-semibold">Taped square</th>
+        <th scope="col" class="p-4 text-neutral-600 font-semibold">Rack-mounted target</th>
+      </tr></thead>
+      <tbody class="[&_td]:p-4 [&_td]:border-t [&_td]:border-neutral-200 [&_th]:p-4 [&_th]:border-t [&_th]:border-neutral-200">
+        <tr><th scope="row" class="text-left font-semibold">True competition height, any room</th><td class="bg-action/5 text-center text-orangeInk font-bold">✓</td><td class="text-center text-neutral-500">Depends on ceiling</td><td class="text-center text-neutral-500">Limited by rack</td></tr>
+        <tr><th scope="row" class="text-left font-semibold">Tactile "you hit it" feedback</th><td class="bg-action/5 text-center text-orangeInk font-bold">✓</td><td class="text-center text-neutral-500">No</td><td class="text-center text-neutral-500">Varies</td></tr>
+        <tr><th scope="row" class="text-left font-semibold">Sized to reduce no-reps</th><td class="bg-action/5 text-center text-orangeInk font-bold">✓</td><td class="text-center text-neutral-500">No</td><td class="text-center text-neutral-500">No</td></tr>
+        <tr><th scope="row" class="text-left font-semibold">Indoor and outdoor, weatherproof</th><td class="bg-action/5 text-center text-orangeInk font-bold">✓</td><td class="text-center text-neutral-500">No</td><td class="text-center text-neutral-500">Rarely</td></tr>
+        <tr><th scope="row" class="text-left font-semibold">Frees up floor space</th><td class="bg-action/5 text-center text-orangeInk font-bold rounded-b-xl">✓</td><td class="text-center text-neutral-500">Yes</td><td class="text-center text-neutral-500">No</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- REVIEWS with breakdown -->
+<section id="reviews" class="bg-ink text-white relative grain">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+    <div class="grid md:grid-cols-[300px_1fr] gap-10 items-center reveal">
+      <div class="text-center md:text-left">
+        <p class="font-display text-6xl">5.0</p>
+        <p class="text-action text-2xl" aria-hidden="true">★★★★★</p>
+        <p class="sr-only">Rated 5 out of 5 stars from 4 verified reviews.</p>
+        <p class="text-neutral-300 mt-1">4 verified reviews</p>
+        <dl class="mt-5 space-y-1.5 text-sm">
+          <div class="flex items-center gap-3"><dt class="w-8 text-neutral-300">5★</dt><dd class="flex-1"><span class="block h-2 rounded-full bg-white/10"><span class="block h-2 rounded-full bg-action" style="width:100%"></span></span></dd><span class="w-6 text-right text-neutral-300">4</span></div>
+          <div class="flex items-center gap-3"><dt class="w-8 text-neutral-300">4★</dt><dd class="flex-1"><span class="block h-2 rounded-full bg-white/10"></span></dd><span class="w-6 text-right text-neutral-300">0</span></div>
+          <div class="flex items-center gap-3"><dt class="w-8 text-neutral-300">3★</dt><dd class="flex-1"><span class="block h-2 rounded-full bg-white/10"></span></dd><span class="w-6 text-right text-neutral-300">0</span></div>
+          <div class="flex items-center gap-3"><dt class="w-8 text-neutral-300">2★</dt><dd class="flex-1"><span class="block h-2 rounded-full bg-white/10"></span></dd><span class="w-6 text-right text-neutral-300">0</span></div>
+          <div class="flex items-center gap-3"><dt class="w-8 text-neutral-300">1★</dt><dd class="flex-1"><span class="block h-2 rounded-full bg-white/10"></span></dd><span class="w-6 text-right text-neutral-300">0</span></div>
+        </dl>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <figure class="bg-white/5 border border-white/10 rounded-2xl p-6 text-sm"><div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full bg-action text-ink font-display grid place-items-center" aria-hidden="true">MT</span><div><p class="font-bold leading-tight">Marcus T.</p><p class="text-xs text-neutral-300 leading-tight">Dallas, TX. Verified buyer ✓</p></div></div><div class="text-action mt-3" aria-hidden="true">★★★★★</div><blockquote class="mt-2 text-sm text-neutral-100">"Mounted it on my garage's exterior brick in 20 minutes. Finally training at real comp height, and my no-reps at my last Hyrox dropped to zero."</blockquote></figure>
+        <figure class="bg-white/5 border border-white/10 rounded-2xl p-6 text-sm"><div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full bg-action text-ink font-display grid place-items-center" aria-hidden="true">DR</span><div><p class="font-bold leading-tight">Dana R.</p><p class="text-xs text-neutral-300 leading-tight">Austin, TX. Verified buyer ✓</p></div></div><div class="text-action mt-3" aria-hidden="true">★★★★★</div><blockquote class="mt-2 text-sm text-neutral-100">"The tactile feedback is the part I didn't know I needed. You feel the hit, so you stop guessing and start grooving the rep."</blockquote></figure>
+        <figure class="bg-white/5 border border-white/10 rounded-2xl p-6 text-sm"><div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full bg-action text-ink font-display grid place-items-center" aria-hidden="true">CW</span><div><p class="font-bold leading-tight">Coach Will</p><p class="text-xs text-neutral-300 leading-tight">Houston, TX. Verified buyer ✓</p></div></div><div class="text-action mt-3" aria-hidden="true">★★★★★</div><blockquote class="mt-2 text-sm text-neutral-100">"Left it outside through a Texas summer and a cold snap. Zero rust, zero warping. Built like a tank for the price."</blockquote></figure>
+        <figure class="bg-white/5 border border-white/10 rounded-2xl p-6 text-sm"><div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full bg-action text-ink font-display grid place-items-center" aria-hidden="true">JS</span><div><p class="font-bold leading-tight">Jas S.</p><p class="text-xs text-neutral-300 leading-tight">Frisco, TX. Verified buyer ✓</p></div></div><div class="text-action mt-3" aria-hidden="true">★★★★★</div><blockquote class="mt-2 text-sm text-neutral-100">"Setup was simple and the build quality is unreal for the price. My whole crew wants one now."</blockquote></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-3xl mx-auto px-4 sm:px-6 py-16 reveal">
+  <h2 class="font-display headline text-3xl sm:text-5xl text-center">Questions, answered</h2>
+  <div class="mt-8 divide-y divide-neutral-200 border-y border-neutral-200">
+    <details class="py-4" open><summary class="flex items-center justify-between font-bold text-lg">Can I mount it on drywall?<span class="faq-plus text-orangeInk text-2xl transition-transform" aria-hidden="true">+</span></summary><p class="text-sm text-neutral-700 mt-3">It mounts to studs, wood, concrete, or brick, indoor or outdoor. Mounting on drywall without studs isn't recommended, because these targets are built to take heavy impact and need a solid anchor.</p></details>
+    <details class="py-4"><summary class="flex items-center justify-between font-bold text-lg">Will it survive outdoors?<span class="faq-plus text-orangeInk text-2xl transition-transform" aria-hidden="true">+</span></summary><p class="text-sm text-neutral-700 mt-3">Yes. It's made from ultra-strong PETG that resists both intense training and harsh weather, with no rust or corrosion, indoors or out.</p></details>
+    <details class="py-4"><summary class="flex items-center justify-between font-bold text-lg">Is it true competition height?<span class="faq-plus text-orangeInk text-2xl transition-transform" aria-hidden="true">+</span></summary><p class="text-sm text-neutral-700 mt-3">Because it's wall-mounted, you set it at competition height regardless of your ceiling clearance. It's also sized slightly smaller than the competition plate so your training reps build race-day precision.</p></details>
+    <details class="py-4"><summary class="flex items-center justify-between font-bold text-lg">How fast does it ship?<span class="faq-plus text-orangeInk text-2xl transition-transform" aria-hidden="true">+</span></summary><p class="text-sm text-neutral-700 mt-3">Free US ground shipping on every order, shipped from Frisco, TX. Order before the daily cutoff and it ships the same business day (Mon to Fri, 9 to 5 CST).</p></details>
+    <details class="py-4"><summary class="flex items-center justify-between font-bold text-lg">What if it's not for me?<span class="faq-plus text-orangeInk text-2xl transition-transform" aria-hidden="true">+</span></summary><p class="text-sm text-neutral-700 mt-3">You're covered by our 30-day "you chickened out" return policy. If anything is wrong with your order, we'll gladly make it right.</p></details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="relative overflow-hidden bg-ink text-white grain">
+  <div class="absolute inset-0 bullseye-bg opacity-50" aria-hidden="true"></div>
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center reveal">
+    <h2 class="font-display headline text-4xl sm:text-7xl">Squat low.<span class="text-action"> Aim high.</span></h2>
+    <p class="text-neutral-300 text-lg mt-5 max-w-xl mx-auto">Every rep should have purpose. Set the standard on your own wall and walk into race day with no doubt.</p>
+    <a href="#buybox" class="js-scrolltop inline-block mt-8 bg-action hover:bg-actionDark text-ink font-extrabold text-lg uppercase tracking-wide rounded-xl px-10 py-5 shadow-cta transition focus-ring">Add to Cart. $34.99</a>
+    <p class="text-neutral-400 text-sm mt-4">Free US shipping. 30-day returns. Built by athletes in the USA.</p>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-black text-neutral-300 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div>
+      <div class="font-display text-2xl text-white">SUB<span class="text-action">90</span></div>
+      <p class="mt-3">Squat low, aim high. Wall ball targets built by athletes who respect the standard.</p>
+      <a href="https://www.instagram.com/sub90fitness" class="inline-flex items-center gap-2 mt-4 text-white hover:text-action focus-ring">Instagram ↗</a>
+    </div>
+    <nav aria-label="Shop"><h2 class="text-white font-bold uppercase text-xs tracking-wider">Shop</h2><ul class="mt-3 space-y-2"><li><a href="/collections/all" class="hover:text-white focus-ring">All Targets</a></li><li><a href="/collections/all" class="hover:text-white focus-ring">2-Pack</a></li><li><a href="#founder-note" class="hover:text-white focus-ring">About Us</a></li><li><a href="#footer-contact" class="hover:text-white focus-ring">Contact</a></li></ul></nav>
+    <nav aria-label="Help"><h2 class="text-white font-bold uppercase text-xs tracking-wider">Help</h2><ul class="mt-3 space-y-2"><li><a href="#footer-contact" class="hover:text-white focus-ring">Shipping Policy</a></li><li><a href="#footer-contact" class="hover:text-white focus-ring">Return Policy</a></li><li><a href="#footer-contact" class="hover:text-white focus-ring">Privacy Policy</a></li><li><a href="#footer-contact" class="hover:text-white focus-ring">Terms of Service</a></li></ul></nav>
+    <div id="footer-contact"><h2 class="text-white font-bold uppercase text-xs tracking-wider">SUB90 Fitness LLC</h2><p class="mt-3">8303 Shady Shore Dr<br>Frisco, TX 75036, USA</p><p class="mt-2"><a href="mailto:info@sub90fitness.com" class="hover:text-white focus-ring">info@sub90fitness.com</a><br>832-762-0558</p><p class="mt-2 text-neutral-400">Mon to Fri, 9AM to 5PM CST</p></div>
+  </div>
+  <div class="border-t border-white/10"><div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-400"><p>© 2026 SUB90 Fitness. SUB90 is not affiliated with or endorsed by HYROX. HYROX® is a registered trademark of its respective owner.</p><p>Visa, Mastercard, Amex, Discover, Apple Pay, Google Pay</p></div></div>
+</footer>
+
+<!-- STICKY MOBILE CART -->
+<div id="stickyBar" class="fixed bottom-0 inset-x-0 z-40 translate-y-full transition-transform duration-300 lg:hidden">
+  <div class="bg-white border-t border-neutral-200 shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.25)] px-4 py-3 flex items-center gap-3">
+    <img id="stickyThumb" src="https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-main.jpg?v=1782277347" alt="" class="w-11 h-11 rounded-lg object-cover border border-neutral-200" />
+    <div class="leading-tight"><p class="text-xs font-semibold text-neutral-600">SUB90 Target</p><p class="font-display text-lg" id="stickyPrice">$34.99</p></div>
+    <button class="js-add ml-auto bg-action hover:bg-actionDark text-ink font-extrabold uppercase text-sm rounded-xl px-6 py-3 shadow-cta transition focus-ring">Add to Cart</button>
+  </div>
+</div>
+
+<!-- LIGHTBOX DIALOG -->
+<div id="lightbox" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-label="Product image viewer">
+  <div class="absolute inset-0 bg-black/85" data-close></div>
+  <div class="relative h-full grid place-items-center p-4">
+    <button data-close class="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 rounded-full w-11 h-11 grid place-items-center focus-ring" aria-label="Close viewer">✕</button>
+    <button id="lbPrev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-white/10 hover:bg-white/20 rounded-full w-11 h-11 grid place-items-center focus-ring" aria-label="Previous image">‹</button>
+    <img id="lbImage" src="" alt="" class="max-h-[85vh] max-w-[92vw] rounded-xl object-contain" />
+    <button id="lbNext" class="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-white/10 hover:bg-white/20 rounded-full w-11 h-11 grid place-items-center focus-ring" aria-label="Next image">›</button>
+  </div>
+</div>
+
+<!-- VIDEO DIALOG -->
+<div id="videoModal" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-label="Product demo video">
+  <div class="absolute inset-0 bg-black/85" data-close></div>
+  <div class="relative h-full grid place-items-center p-4">
+    <button data-close class="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 rounded-full w-11 h-11 grid place-items-center focus-ring" aria-label="Close video">✕</button>
+    <div id="videoHolder" class="w-full max-w-3xl aspect-video bg-black rounded-xl overflow-hidden grid place-items-center text-neutral-400 text-center px-6">
+      <!-- WIRE: replace this with your real demo video embed -->
+      <p>Connect your product demo video here (set the iframe or video URL in the videoBtn handler).</p>
+    </div>
+  </div>
+</div>
+
+<!-- live region for cart announcements -->
+<div id="liveRegion" class="sr-only" aria-live="polite"></div>
+<div id="toast" class="fixed top-20 right-4 z-[80] bg-ink text-white px-5 py-3 rounded-xl shadow-lg opacity-0 translate-y-[-8px] transition-all">Added to cart ✓</div>
+
+
+
+</div>
+{% stylesheet %}
+
+  html:has(.sub90-page-template) {
+    font-size: 93.75%;
+  }
+
+  body:has(.sub90-page-template) .shopify-section-group-header-group {
+    display: none;
+  }
+  body:has(.sub90-page-template) .shopify-section-group-footer-group {
+    display: none;
+  }
+  html{scroll-behavior:smooth}
+  html,body{max-width:100%;overflow-x:clip}
+  *,*::before,*::after{box-sizing:border-box;min-width:0}
+  img,svg,video,table{max-width:100%}
+  body{font-family:'Inter',sans-serif;color:#0A0A0A;width:100%}
+  .font-display{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.01em}
+  .headline{text-transform:uppercase;line-height:.92}
+  .sub90-page-template :is(.bg-ink,.bg-coal) :is(.headline,h1,h2,h3){color:#fff}
+  .sub90-header__nav{display:none}
+  @media (min-width: 768px){
+    .sub90-header__nav{display:flex!important}
+    .sub90-header__menu-btn{display:none!important}
+  }
+  .bullseye-bg{
+    background-image:radial-gradient(circle,transparent 0 22px,rgba(255,90,31,.10) 22px 24px,transparent 24px 46px,rgba(255,90,31,.08) 46px 48px,transparent 48px 78px,rgba(255,90,31,.06) 78px 80px,transparent 80px);
+    background-size:160px 160px;background-position:center;
+  }
+  .grain::before{content:"";position:absolute;inset:0;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .marquee{animation:scroll 30s linear infinite}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+  details>summary{list-style:none;cursor:pointer}details>summary::-webkit-details-marker{display:none}
+  details[open] .faq-plus{transform:rotate(45deg)}
+  .focus-ring:focus-visible{outline:3px solid #B23A0F;outline-offset:2px;border-radius:6px}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  .zoom-wrap:hover .zoom-img{transform:scale(1.6)}
+  .zoom-img{transition:transform .2s ease;transform-origin:center}
+  .sub90-page-template #reviews .grid.md\:grid-cols-\[300px_1fr\]{align-items:start}
+  .sub90-page-template #bundles-section article h3{color:#fff!important}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .skip{position:absolute;left:-999px;top:0;z-index:100}
+  .skip:focus{left:8px;top:8px;background:#0A0A0A;color:#fff;padding:10px 16px;border-radius:8px}
+  @media (prefers-reduced-motion: reduce){
+    .marquee{animation:none}.reveal{opacity:1;transform:none;transition:none}
+    .zoom-img{transition:none}.zoom-wrap:hover .zoom-img{transform:none}html{scroll-behavior:auto}
+  }
+
+{% endstylesheet %}
+{% javascript %}
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var shopifyData={
+    cartUrl:'{{ routes.cart_url }}',
+    addUrl:(window.Shopify && Shopify.routes && Shopify.routes.root ? Shopify.routes.root : '/')+'cart/add.js',
+    cartStateUrl:(window.Shopify && Shopify.routes && Shopify.routes.root ? Shopify.routes.root : '/')+'cart.js',
+    addonVariantIds:{
+      height:'52517704401207',
+      chalk:'52517704499511'
+    },
+    bundleItemVariantIds:{
+      hyrox:['52517705941303','52517705974071'],
+      complete:['52517706006839','52517706039607','52517704499511']
+    }
+  };
+
+  /* mobile nav */
+  var menuBtn=$('#menuBtn'), mobileNav=$('#mobileNav');
+  if(menuBtn){ menuBtn.addEventListener('click',function(){ var open=mobileNav.classList.toggle('hidden')===false; menuBtn.setAttribute('aria-expanded',open?'true':'false'); }); }
+
+  /* data */
+  var variants=[
+    {name:'Black / White', a:'#0A0A0A', b:'#FFFFFF', img:'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-main.jpg?v=1782277347', variantId:'{{ variant_black_white }}'},
+    {name:'Black / Orange',a:'#0A0A0A', b:'#FF5A1F', img:'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-black-orange.png?v=1782277357', variantId:'{{ variant_black_orange }}'},
+    {name:'White / Black', a:'#FFFFFF', b:'#0A0A0A', img:'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-white-black.jpg?v=1782277370', variantId:'{{ variant_white_black }}'},
+    {name:'White / Blue',  a:'#FFFFFF', b:'#2563EB', img:'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-white-blue.png?v=1782277376', variantId:'{{ variant_white_blue }}'}
+  ];
+  var gallery=[
+    'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-main.jpg?v=1782277347',
+    'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-front.jpg?v=1782277402',
+    'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-crew.jpg?v=1782277444',
+    'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-athlete.png?v=1782277455',
+    'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-white-black.jpg?v=1782277370',
+    'https://cdn.shopify.com/s/files/1/0996/9683/6919/files/sub90-white-blue.png?v=1782277376'
+  ];
+  var mainImage=$('#mainImage'), stickyThumb=$('#stickyThumb'), current=0, selectedVariantIndex=0;
+
+  /* thumbnails */
+  var tWrap=$('#thumbs');
+  gallery.forEach(function(src,i){
+    var btn=document.createElement('button');
+    btn.setAttribute('role','listitem');
+    btn.className='thumb shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 focus-ring '+(i===0?'border-orangeInk':'border-neutral-200');
+    btn.setAttribute('aria-label','Show image '+(i+1)); btn.setAttribute('aria-pressed', i===0?'true':'false');
+    btn.innerHTML='<img src="'+src.replace('width=1100','width=300')+'" alt="" class="w-full h-full object-cover">';
+    btn.addEventListener('click',function(){ setImage(i); });
+    tWrap.appendChild(btn);
+  });
+  function setImage(i){
+    current=i; mainImage.src=gallery[i];
+    $$('.thumb').forEach(function(t,idx){ t.classList.toggle('border-orangeInk',idx===i); t.classList.toggle('border-neutral-200',idx!==i); t.setAttribute('aria-pressed',idx===i?'true':'false'); });
+  }
+
+  /* variants with keyboard (radiogroup) */
+  var vWrap=$('#variants');
+  variants.forEach(function(v,i){
+    var b=document.createElement('button');
+    b.className='variant-swatch relative w-12 h-12 rounded-full border-2 focus-ring overflow-hidden '+(i===0?'border-orangeInk':'border-neutral-300');
+    b.setAttribute('role','radio'); b.setAttribute('aria-checked',i===0?'true':'false'); b.setAttribute('aria-label',v.name);
+    b.tabIndex = i===0?0:-1;
+    b.style.background='linear-gradient(135deg, '+v.a+' 0 50%, '+v.b+' 50% 100%)';
+    b.addEventListener('click',function(){ selectVariant(i); });
+    b.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%variants.length;
+      else if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+variants.length)%variants.length;
+      if(n!==null){ e.preventDefault(); selectVariant(n); $$('.variant-swatch')[n].focus(); }
+    });
+    vWrap.appendChild(b);
+  });
+  function selectVariant(i){
+    selectedVariantIndex=i;
+    $$('.variant-swatch').forEach(function(s,idx){
+      var on=idx===i;
+      s.classList.toggle('border-orangeInk',on); s.classList.toggle('border-neutral-300',!on);
+      s.setAttribute('aria-checked',on?'true':'false'); s.tabIndex=on?0:-1;
+    });
+    $('#variantName').textContent=variants[i].name;
+    mainImage.src=variants[i].img; stickyThumb.src=variants[i].img;
+    // sync gallery current to the matching variant image if present
+    var gi=gallery.indexOf(variants[i].img); if(gi>=0){ current=gi; setImage(gi); } else { current=0; }
+  }
+
+  /* bundles + add-ons: live subtotal */
+  var bundlePrice=34.99, bundleCompare=0, price=34.99;
+  function fmt(n){return '$'+n.toFixed(2)}
+  function addonsTotal(){
+    var t=0; $$('.addon-check').forEach(function(c){ if(c.checked) t+=parseFloat(c.dataset.price); }); return t;
+  }
+  function recalc(){
+    var add=addonsTotal();
+    price=bundlePrice+add;
+    var compareBase=(bundleCompare||bundlePrice)+add;
+    $('#priceTag').textContent=fmt(price);
+    $('#ctaPrice').textContent=fmt(price);
+    $('#stickyPrice').textContent=fmt(price);
+    var cmp=$('#comparePrice'), sb=$('#saveBadge');
+    var saved=compareBase-price;
+    if(saved>0.005){
+      cmp.textContent=fmt(compareBase); cmp.classList.remove('hidden');
+      sb.textContent='Save '+fmt(saved); sb.classList.remove('hidden');
+    } else { cmp.classList.add('hidden'); sb.classList.add('hidden'); }
+    var n=$$('.addon-check').filter(function(c){return c.checked}).length;
+    var note=$('#addonNote'); if(note) note.textContent = n? (n+(n>1?' add-ons':' add-on')+' selected') : '';
+  }
+  function selectBundle(opt){
+    $$('.bundle-opt').forEach(function(o){
+      var on=o===opt;
+      o.classList.toggle('border-action',on); o.classList.toggle('bg-action/5',on);
+      o.classList.toggle('border-neutral-200',!on); o.setAttribute('aria-checked',on?'true':'false');
+      o.tabIndex=on?0:-1;
+      var dot=o.querySelector('.bundle-dot'); var inner=dot&&dot.firstElementChild;
+      if(dot){ dot.classList.toggle('border-action',on); dot.classList.toggle('border-neutral-300',!on); }
+      if(inner){ inner.classList.toggle('bg-action',on); inner.classList.toggle('bg-transparent',!on); }
+    });
+    bundlePrice=parseFloat(opt.dataset.price);
+    bundleCompare=opt.dataset.compare?parseFloat(opt.dataset.compare):0;
+    recalc();
+  }
+  var bundleOpts=$$('.bundle-opt');
+  bundleOpts.forEach(function(opt,i){
+    opt.tabIndex = i===0?0:-1;
+    opt.addEventListener('click',function(){ selectBundle(opt); });
+    opt.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowDown'||e.key==='ArrowRight') n=(i+1)%bundleOpts.length;
+      else if(e.key==='ArrowUp'||e.key==='ArrowLeft') n=(i-1+bundleOpts.length)%bundleOpts.length;
+      if(n!==null){ e.preventDefault(); selectBundle(bundleOpts[n]); bundleOpts[n].focus(); }
+    });
+  });
+  $$('.addon-check').forEach(function(c){
+    c.addEventListener('change',function(){
+      var lbl=c.closest('.addon-opt');
+      if(lbl){ lbl.classList.toggle('border-action',c.checked); lbl.classList.toggle('bg-action/5',c.checked); lbl.classList.toggle('border-neutral-200',!c.checked); }
+      recalc();
+    });
+  });
+  recalc();
+
+  /* add to cart + live region */
+  var cartCount=$('#cartCount'), toast=$('#toast'), live=$('#liveRegion');
+  function setToast(message){
+    toast.textContent=message;
+    toast.style.opacity='1';
+    toast.style.transform='translateY(0)';
+    setTimeout(function(){ toast.style.opacity='0'; toast.style.transform='translateY(-8px)'; },1800);
+  }
+  function selectedBundleKey(){
+    var selected=bundleOpts.filter(function(opt){ return opt.getAttribute('aria-checked')==='true'; })[0];
+    return selected ? selected.dataset.bundle : 'single';
+  }
+  function pushItem(counts, id, quantity){
+    counts[id]=(counts[id]||0)+quantity;
+  }
+  function buildCartItems(){
+    var counts={};
+    var variantId=variants[selectedVariantIndex].variantId;
+    var bundleKey=selectedBundleKey();
+    pushItem(counts, variantId, 1);
+    if(shopifyData.bundleItemVariantIds[bundleKey]){
+      shopifyData.bundleItemVariantIds[bundleKey].forEach(function(id){ pushItem(counts, id, 1); });
+    }
+    $$('.addon-check').forEach(function(c){
+      if(c.checked && shopifyData.addonVariantIds[c.dataset.addon]){
+        pushItem(counts, shopifyData.addonVariantIds[c.dataset.addon], 1);
+      }
+    });
+    return Object.keys(counts).map(function(id){
+      return { id:Number(id), quantity:counts[id] };
+    });
+  }
+  function buildCartPermalink(items){
+    return (window.Shopify && Shopify.routes && Shopify.routes.root ? Shopify.routes.root : '/') + 'cart/' + items.map(function(item){
+      return String(item.id) + ':' + String(item.quantity);
+    }).join(',');
+  }
+  function submitCartForm(items){
+    var form=document.createElement('form');
+    form.method='post';
+    form.action=(window.Shopify && Shopify.routes && Shopify.routes.root ? Shopify.routes.root : '/')+'cart/add';
+    form.acceptCharset='UTF-8';
+    form.enctype='multipart/form-data';
+    form.noValidate=true;
+
+    function appendHidden(name, value){
+      var input=document.createElement('input');
+      input.type='hidden';
+      input.name=name;
+      input.value=String(value);
+      form.appendChild(input);
+    }
+
+    appendHidden('form_type', 'product');
+    appendHidden('utf8', '✓');
+
+    if(items.length===1){
+      appendHidden('id', items[0].id);
+      appendHidden('quantity', items[0].quantity);
+      appendHidden('product-id', '{{ fallback_product_id }}');
+      appendHidden('section-id', 'sub90-home-landing');
+    } else {
+      items.forEach(function(item,index){
+        appendHidden('items['+index+'][id]', item.id);
+        appendHidden('items['+index+'][quantity]', item.quantity);
+      });
+    }
+    document.body.appendChild(form);
+    form.submit();
+  }
+  async function refreshCartCount(){
+    try{
+      var response=await fetch(shopifyData.cartStateUrl,{ headers:{ Accept:'application/json' } });
+      if(!response.ok) return;
+      var cart=await response.json();
+      cartCount.textContent=String(cart.item_count || 0);
+    }catch(error){}
+  }
+  async function addToCart(){
+    live.textContent='Taking you to your cart.';
+    window.location.href='/products/sub90-wall-ball-target?sub90_autocart=1';
+  }
+  $('#addToCart').addEventListener('click',addToCart);
+  $$('.js-add').forEach(function(b){ b.addEventListener('click',addToCart); });
+  $$('.js-scrolltop').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); }); });
+  refreshCartCount();
+
+  /* "Choose this setup" cards -> select matching bundle + scroll to buy box */
+  $$('.js-pick').forEach(function(b){
+    b.addEventListener('click',function(){
+      var key=b.dataset.goto;
+      var target=bundleOpts.filter(function(o){return o.dataset.bundle===key})[0];
+      if(target){ selectBundle(target); }
+      var box=$('#buybox'); if(box) box.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  /* sticky bar */
+  var sticky=$('#stickyBar'), cta=$('#addToCart');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ sticky.style.transform='translateY(100%)'; } else if(en.boundingClientRect.top<0){ sticky.style.transform='translateY(0)'; } }); },{threshold:0}).observe(cta);
+  }
+
+  /* scroll reveal */
+  if('IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); ro.unobserve(en.target); } }); },{threshold:.12});
+    $$('.reveal').forEach(function(el){ ro.observe(el); });
+  } else { $$('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+
+  /* countdown to 2pm CST cutoff */
+  var cd=$('#countdown');
+  function tick(){
+    var now=new Date();
+    var cutoff=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate(),20,0,0));
+    if(now.getTime()>cutoff.getTime()) cutoff.setUTCDate(cutoff.getUTCDate()+1);
+    var d=Math.max(0,cutoff.getTime()-now.getTime());
+    var h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);
+    cd.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+
+  /* ---- accessible dialogs (lightbox + video) ---- */
+  var lastFocus=null;
+  function trap(modal,e){
+    var f=$$('button, [href], img[tabindex], [tabindex]:not([tabindex="-1"])',modal).filter(function(el){return el.offsetParent!==null});
+    if(!f.length) return; var first=f[0], last=f[f.length-1];
+    if(e.key==='Tab'){
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  function openModal(modal){
+    lastFocus=document.activeElement; modal.classList.remove('hidden');
+    var btn=$('[data-close]',modal); if(btn) btn.focus();
+    document.body.style.overflow='hidden';
+    modal._key=function(e){ if(e.key==='Escape'){ closeModal(modal); } trap(modal,e); };
+    document.addEventListener('keydown',modal._key);
+  }
+  function closeModal(modal){
+    modal.classList.add('hidden'); document.body.style.overflow='';
+    document.removeEventListener('keydown',modal._key);
+    if(modal.id==='videoModal'){ /* stop video by clearing holder if iframe was injected */ }
+    if(lastFocus) lastFocus.focus();
+  }
+  $$('[data-close]').forEach(function(el){ el.addEventListener('click',function(){ closeModal(el.closest('[role=dialog]')); }); });
+
+  /* lightbox */
+  var lightbox=$('#lightbox'), lbImage=$('#lbImage');
+  function showLb(i){ current=(i+gallery.length)%gallery.length; lbImage.src=gallery[current]; lbImage.alt='SUB90 wall ball target, image '+(current+1); }
+  $('#lightboxBtn').addEventListener('click',function(){ showLb(current); openModal(lightbox); });
+  $('#lbPrev').addEventListener('click',function(){ showLb(current-1); });
+  $('#lbNext').addEventListener('click',function(){ showLb(current+1); });
+  document.addEventListener('keydown',function(e){
+    if(lightbox.classList.contains('hidden')) return;
+    if(e.key==='ArrowRight') showLb(current+1);
+    if(e.key==='ArrowLeft') showLb(current-1);
+  });
+
+  /* video modal */
+  var videoModal=$('#videoModal');
+  $('#videoBtn').addEventListener('click',function(){
+    /* WIRE: inject your real embed, e.g.:
+       $('#videoHolder').innerHTML='<iframe class="w-full h-full" src="https://www.youtube.com/embed/XXXX?autoplay=1" title="SUB90 demo" allow="autoplay; fullscreen" allowfullscreen></iframe>'; */
+    openModal(videoModal);
+  });
+})();
+
+{% endjavascript %}
+{% schema %}
+{
+  "name": "SUB90 Landing Page",
+  "settings": [],
+  "presets": [{"name": "SUB90 Landing Page"}]
+}
+{% endschema %}

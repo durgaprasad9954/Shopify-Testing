@@ -8,6 +8,7 @@
 {%- assign comparison_blocks = section.blocks | where: 'type', 'comparison' -%}
 {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
 {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+{%- assign social_fallback_assets = 'sub90-social-1.webp|sub90-social-2.webp|sub90-social-3.webp|sub90-social-4.webp' | split: '|' -%}
 
 <div class="sub90-template sub90-content color-{{ section.settings.color_scheme }}">
   {%- if feature_blocks.size > 0 -%}
@@ -133,14 +134,11 @@
   <section class="sub90-guarantee">
     <div class="page-width">
       <div class="sub90-story__grid">
-        <div>
-          {%- if section.settings.guarantee_image != blank -%}
-            {{
-              section.settings.guarantee_image
-              | image_url: width: 900
-              | image_tag: class: 'sub90-story__media', loading: 'lazy', alt: section.settings.guarantee_heading
-            }}
-          {%- endif -%}
+        <div class="sub90-guarantee__icon-wrap">
+          <div class="sub90-guarantee__icon" aria-hidden="true">
+            <span class="sub90-guarantee__icon-mark">30</span>
+            <span class="sub90-guarantee__icon-label">DAYS</span>
+          </div>
         </div>
         <div>
           <p class="sub90-story__eyebrow">{{ section.settings.guarantee_caption }}</p>
@@ -189,6 +187,12 @@
                   block.settings.image
                   | image_url: width: 900
                   | image_tag: loading: 'lazy', alt: block.settings.handle
+                }}
+              {%- elsif social_fallback_assets[forloop.index0] != blank -%}
+                {{
+                  social_fallback_assets[forloop.index0]
+                  | asset_url
+                  | image_tag: class: 'sub90-social__fallback', loading: 'lazy', alt: block.settings.handle
                 }}
               {%- endif -%}
               <figcaption class="sub90-social__handle">{{ block.settings.handle }}</figcaption>

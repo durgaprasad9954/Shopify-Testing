@@ -45,6 +45,20 @@
   padding-top: 3rem;
 }
 
+.footer a,
+.footer .link,
+.footer .list-menu__item,
+.footer .underlined-link {
+  text-decoration: none;
+}
+
+.footer a:hover,
+.footer .link:hover,
+.footer .list-menu__item:hover,
+.footer .underlined-link:hover {
+  text-decoration: none;
+}
+
 .footer__content-bottom:only-child {
   border-top: 0;
 }

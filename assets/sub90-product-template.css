@@ -181,7 +181,6 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-gallery__frame {
   position: relative;
   overflow: hidden;
-  border: 0.1rem solid var(--sub90-border);
   border-radius: var(--sub90-radius-xl);
   background: var(--sub90-white);
   box-shadow: var(--sub90-shadow);
@@ -191,6 +190,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   display: block;
   width: 100%;
   padding: 0;
+  cursor: zoom-in;
 }
 
 .sub90-gallery__media {
@@ -198,6 +198,14 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   width: 100%;
   height: auto;
   object-fit: contain;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 180ms ease;
+}
+
+.sub90-gallery__frame:hover .sub90-gallery__media,
+.sub90-gallery__frame.is-zooming .sub90-gallery__media {
+  transform: scale(1.05);
 }
 
 .sub90-gallery__badge {
@@ -420,6 +428,14 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   display: block;
 }
 
+.sub90-main-variants .product-form__input input[type='radio'] {
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
 .sub90-main-variants .product-form__input input[type='radio'] + label {
   align-items: center;
   background: var(--sub90-white);
@@ -507,6 +523,8 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   gap: 1.6rem;
   align-items: flex-start;
   padding: 1.8rem;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .sub90-setup-card + .sub90-setup-card {
@@ -516,6 +534,11 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-setup-card.is-active {
   border-color: rgba(255, 90, 31, 0.5);
   background: rgba(255, 90, 31, 0.05);
+  box-shadow: 0 0 0 0.1rem rgba(255, 90, 31, 0.12);
+}
+
+.sub90-setup-card:hover {
+  transform: translateY(-1px);
 }
 
 .sub90-setup-card__radio {
@@ -578,6 +601,12 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   font-size: 1.1rem;
   font-weight: 700;
   margin-top: 0.8rem;
+}
+
+.sub90-setup-card__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sub90-setup-card__badge {
@@ -891,7 +920,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-section-head__title {
   color: var(--sub90-ink);
   font-family: var(--sub90-font-display);
-  font-size: clamp(3.8rem, 6vw, 5.8rem);
+  font-size: clamp(3.4rem, 5vw, 5rem);
   line-height: 0.95;
   margin-top: 1rem;
   text-transform: uppercase;
@@ -1004,7 +1033,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-story__heading {
   color: var(--sub90-ink);
   font-family: var(--sub90-font-display);
-  font-size: clamp(3.2rem, 5vw, 4.8rem);
+  font-size: clamp(3rem, 4.4vw, 4.2rem);
   line-height: 0.95;
   margin-top: 0.8rem;
   text-transform: uppercase;
@@ -1026,6 +1055,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-story__media {
   border-radius: var(--sub90-radius-xl);
   display: block;
+  object-fit: cover;
   width: 100%;
 }
 
@@ -1036,12 +1066,16 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-bundles__cards {
   display: grid;
   gap: 1.6rem;
+  align-items: stretch;
 }
 
 .sub90-bundle-card {
   border: 0.1rem solid var(--sub90-border);
   border-radius: var(--sub90-radius-lg);
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .sub90-bundle-card__badge {
@@ -1092,7 +1126,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 
 .sub90-bundle-card__button {
   display: inline-flex;
-  margin-top: 1.4rem;
+  margin-top: auto;
   text-decoration: none;
 }
 
@@ -1140,11 +1174,16 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   border-radius: var(--sub90-radius-lg);
   background: var(--sub90-white);
   box-shadow: var(--sub90-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .sub90-social__card img {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
+  display: block;
   object-fit: cover;
+  object-position: center center;
   width: 100%;
 }
 
@@ -1152,6 +1191,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   color: var(--sub90-ink);
   font-size: 1.4rem;
   font-weight: 700;
+  margin-top: auto;
   padding: 1.2rem 1.4rem 1.4rem;
 }
 
@@ -1160,12 +1200,66 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   border-radius: var(--sub90-radius-xl);
   box-shadow: var(--sub90-shadow);
   position: relative;
+  max-width: 92rem;
+  margin: 0 auto;
 }
 
 .sub90-video-card img {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 5.4;
+  display: block;
   object-fit: cover;
+  object-position: center;
   width: 100%;
+}
+
+.sub90-guarantee__icon-wrap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.sub90-guarantee__icon {
+  align-items: center;
+  aspect-ratio: 1;
+  background: var(--sub90-white);
+  border: 0.2rem solid rgba(10, 10, 10, 0.12);
+  border-radius: 50%;
+  box-shadow: var(--sub90-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 34rem;
+  position: relative;
+  width: min(100%, 34rem);
+}
+
+.sub90-guarantee__icon::before {
+  border: 0.2rem solid rgba(10, 10, 10, 0.08);
+  border-radius: 50%;
+  content: '';
+  inset: 1.2rem;
+  position: absolute;
+}
+
+.sub90-guarantee__icon-mark {
+  color: var(--sub90-ink);
+  font-family: var(--sub90-font-display);
+  font-size: clamp(7rem, 10vw, 10rem);
+  line-height: 0.85;
+  position: relative;
+  z-index: 1;
+}
+
+.sub90-guarantee__icon-label {
+  color: var(--sub90-ink);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  margin-top: -0.2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .sub90-video-card__play {
@@ -1228,7 +1322,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 .sub90-proof__score-number {
   color: var(--sub90-ink);
   font-family: var(--sub90-font-display);
-  font-size: 5rem;
+  font-size: 4.6rem;
   line-height: 1;
 }
 
@@ -1240,7 +1334,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
 
 .sub90-proof__score-copy {
   color: var(--sub90-muted);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-top: 0.8rem;
 }
 
@@ -1249,8 +1343,9 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   border-radius: var(--sub90-radius-lg);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 2rem;
+  gap: 1.2rem;
+  min-height: 38rem;
+  padding: 3rem 2.6rem;
 }
 
 .sub90-proof__review-avatar {
@@ -1293,7 +1388,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   font-size: 1.5rem;
   font-style: normal;
   line-height: 1.7;
-  margin: 0;
+  margin: auto 0 0;
   max-width: none;
   padding: 0;
   quotes: none;
@@ -1347,9 +1442,13 @@ body:has(.sub90-template) .shopify-section-group-header-group {
   text-align: center;
 }
 
+.sub90-final-cta .sub90-section-head__title {
+  font-size: clamp(3.2rem, 5vw, 4.6rem);
+}
+
 .sub90-final-cta__text {
   color: var(--sub90-muted);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   line-height: 1.7;
   margin: 1.6rem auto 0;
   max-width: 72rem;
@@ -1412,8 +1511,7 @@ body:has(.sub90-template) .shopify-section-group-header-group {
     top: 10rem;
   }
 
-  .sub90-feature-band__grid,
-  .sub90-proof__summary {
+  .sub90-feature-band__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -1432,14 +1530,28 @@ body:has(.sub90-template) .shopify-section-group-header-group {
     order: 1;
   }
 
-  .sub90-bundles__cards,
-  .sub90-proof__reviews,
-  .sub90-social__grid {
+  .sub90-bundles__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sub90-bundles__cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .sub90-proof__reviews,
+  .sub90-social__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sub90-proof__summary {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .sub90-proof__reviews {
+    align-items: stretch;
+  }
+
+  .sub90-social__grid {
+    align-items: stretch;
   }
 }
 

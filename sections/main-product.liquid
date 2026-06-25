@@ -142,6 +142,9 @@
             <div class="sub90-gallery__chip">{{ section.settings.gallery_chip_2 | newline_to_br }}</div>
             <div class="sub90-gallery__chip">{{ section.settings.gallery_chip_3 | newline_to_br }}</div>
           </div>
+          <script type="application/json" data-sub90-variants>
+            {{ active_product.variants | json }}
+          </script>
         </div>
 
         <div class="sub90-info">
@@ -160,7 +163,7 @@
           </div>
 
           <div class="sub90-info__price-row">
-            <span class="sub90-info__price" data-sub90-price>{{ current_price }}</span>
+            <span class="sub90-info__price" data-sub90-price data-sub90-base-price="{{ active_variant.price }}">{{ current_price }}</span>
             {%- if section.settings.compare_price_text != blank -%}
               <span class="sub90-info__compare">{{ section.settings.compare_price_text }}</span>
             {%- endif -%}
@@ -192,7 +195,22 @@
               </div>
 
               {%- for block in setup_blocks -%}
-                <div class="sub90-setup-card{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
+                <label
+                  class="sub90-setup-card{% if forloop.first %} is-active{% endif %}"
+                  data-sub90-setup-card
+                  data-setup-price="{{ block.settings.price }}"
+                  data-setup-price-raw="{{ block.settings.price | remove: '$' | remove: ',' }}"
+                  data-setup-compare="{{ block.settings.compare_price }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <input
+                    class="sub90-setup-card__input{% if forloop.first %} is-active{% endif %}"
+                    type="radio"
+                    name="sub90-setup-{{ section.id }}"
+                    value="{{ block.settings.title | escape }}"
+                    {% if forloop.first %}checked{% endif %}
+                    aria-label="{{ block.settings.title | escape }} {{ block.settings.price | escape }}"
+                  >
                   {%- if block.settings.badge != blank -%}
                     <span class="sub90-setup-card__badge">{{ block.settings.badge }}</span>
                   {%- endif -%}
@@ -210,7 +228,7 @@
                       <span class="sub90-setup-card__compare">{{ block.settings.compare_price }}</span>
                     {%- endif -%}
                   </div>
-                </div>
+                </label>
               {%- endfor -%}
             </div>
           {%- endif -%}
