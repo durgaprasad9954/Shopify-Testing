@@ -1,112 +1,438 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+{{ 'sub90-product-template.css' | asset_url | stylesheet_tag }}
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+{%- assign feature_blocks = section.blocks | where: 'type', 'feature' -%}
+{%- assign hotspot_blocks = section.blocks | where: 'type', 'hotspot' -%}
+{%- assign story_blocks = section.blocks | where: 'type', 'story' -%}
+{%- assign bundle_blocks = section.blocks | where: 'type', 'bundle' -%}
+{%- assign social_blocks = section.blocks | where: 'type', 'social' -%}
+{%- assign comparison_blocks = section.blocks | where: 'type', 'comparison' -%}
+{%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+{%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
 
-{%- capture disclosures_content -%}
-  {%- render 'product-disclosures',
-    product: product,
-    heading: section.settings.heading,
-    heading_size: section.settings.heading_size,
-    open_by_default: section.settings.open_by_default,
-    surface: 'product_page'
-  -%}
-{%- endcapture -%}
+<div class="sub90-template sub90-content color-{{ section.settings.color_scheme }}">
+  {%- if feature_blocks.size > 0 -%}
+    <section class="sub90-feature-band">
+      <div class="page-width">
+        <div class="sub90-feature-band__grid">
+          {%- for block in feature_blocks -%}
+            <div class="sub90-feature-band__item" {{ block.shopify_attributes }}>
+              <span class="sub90-feature-band__number">{{ block.settings.number }}</span>
+              <h2 class="sub90-feature-band__title">{{ block.settings.title }}</h2>
+              <p class="sub90-feature-band__text">{{ block.settings.text }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
 
-{%- unless disclosures_content == blank -%}
-  <div class="color-{{ section.settings.color_scheme }} gradient">
-    <div class="page-width section-{{ section.id }}-padding">
-      {{ disclosures_content }}
+  <section class="sub90-hotspots">
+    <div class="page-width">
+      <div class="sub90-section-head">
+        <p class="sub90-section-head__caption">{{ section.settings.hotspots_caption }}</p>
+        <h2 class="sub90-section-head__title">{{ section.settings.hotspots_heading }}</h2>
+      </div>
+      <div class="sub90-hotspots__grid">
+        <div>
+          {%- if section.settings.hotspots_image != blank -%}
+            {{
+              section.settings.hotspots_image
+              | image_url: width: 1200
+              | image_tag: class: 'sub90-hotspots__image', loading: 'lazy', alt: section.settings.hotspots_heading
+            }}
+          {%- endif -%}
+        </div>
+        <ol class="sub90-hotspots__list">
+          {%- for block in hotspot_blocks -%}
+            <li class="sub90-hotspots__item" {{ block.shopify_attributes }}>
+              <span class="sub90-hotspots__badge">{{ block.settings.number }}</span>
+              <span class="sub90-hotspots__item-title">{{ block.settings.title }}</span>
+              <p class="sub90-hotspots__text">{{ block.settings.text }}</p>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
     </div>
-  </div>
-{%- endunless -%}
+  </section>
+
+  <section class="sub90-no-rep">
+    <div class="page-width">
+      <div class="sub90-section-head">
+        <p class="sub90-section-head__caption">{{ section.settings.problem_caption }}</p>
+        <h2 class="sub90-section-head__title">{{ section.settings.problem_heading }}</h2>
+      </div>
+      <p>{{ section.settings.problem_text_1 }}</p>
+      <p>{{ section.settings.problem_text_2 }}</p>
+      <div class="sub90-section-head">
+        <a class="sub90-cta-link" href="#sub90-buybox">{{ section.settings.problem_cta }}</a>
+      </div>
+    </div>
+  </section>
+
+  {%- if story_blocks.size > 0 -%}
+    <section class="sub90-story">
+      <div class="page-width">
+        {%- for block in story_blocks -%}
+          <div class="sub90-story__row" {{ block.shopify_attributes }}>
+            <div class="sub90-story__grid">
+              <div>
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag: class: 'sub90-story__media', loading: 'lazy', alt: block.settings.heading
+                  }}
+                {%- endif -%}
+              </div>
+              <div>
+                <p class="sub90-story__eyebrow">{{ block.settings.caption }}</p>
+                <h2 class="sub90-story__heading">{{ block.settings.heading }}</h2>
+                <div class="sub90-story__text">{{ block.settings.text }}</div>
+                {%- if block.settings.note != blank -%}
+                  <p class="sub90-story__note">{{ block.settings.note }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+
+  {%- if bundle_blocks.size > 0 -%}
+    <section class="sub90-bundles">
+      <div class="page-width">
+        <div class="sub90-section-head">
+          <p class="sub90-section-head__caption">{{ section.settings.bundles_caption }}</p>
+          <h2 class="sub90-section-head__title">{{ section.settings.bundles_heading }}</h2>
+          <p class="sub90-final-cta__text">{{ section.settings.bundles_text }}</p>
+        </div>
+        <div class="sub90-bundles__cards">
+          {%- for block in bundle_blocks -%}
+            <article class="sub90-bundle-card" {{ block.shopify_attributes }}>
+              {%- if block.settings.badge != blank -%}
+                <span class="sub90-bundle-card__badge">{{ block.settings.badge }}</span>
+              {%- endif -%}
+              <h3 class="sub90-bundle-card__title">{{ block.settings.title }}</h3>
+              <p class="sub90-bundle-card__text">{{ block.settings.text }}</p>
+              <div class="sub90-bundle-card__prices">
+                <span class="sub90-bundle-card__price">{{ block.settings.price }}</span>
+                {%- if block.settings.compare_price != blank -%}
+                  <span class="sub90-bundle-card__compare">{{ block.settings.compare_price }}</span>
+                {%- endif -%}
+              </div>
+              <a class="sub90-cta-link sub90-bundle-card__button" href="#sub90-buybox">{{ block.settings.button_label }}</a>
+            </article>
+          {%- endfor -%}
+        </div>
+        <p class="sub90-inline-note">{{ section.settings.bundles_note }}</p>
+      </div>
+    </section>
+  {%- endif -%}
+
+  <section class="sub90-guarantee">
+    <div class="page-width">
+      <div class="sub90-story__grid">
+        <div>
+          {%- if section.settings.guarantee_image != blank -%}
+            {{
+              section.settings.guarantee_image
+              | image_url: width: 900
+              | image_tag: class: 'sub90-story__media', loading: 'lazy', alt: section.settings.guarantee_heading
+            }}
+          {%- endif -%}
+        </div>
+        <div>
+          <p class="sub90-story__eyebrow">{{ section.settings.guarantee_caption }}</p>
+          <h2 class="sub90-story__heading">{{ section.settings.guarantee_heading }}</h2>
+          <div class="sub90-story__text">{{ section.settings.guarantee_text }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sub90-team">
+    <div class="page-width">
+      <div class="sub90-story__grid">
+        <div>
+          {%- if section.settings.team_image != blank -%}
+            {{
+              section.settings.team_image
+              | image_url: width: 1200
+              | image_tag: class: 'sub90-story__media', loading: 'lazy', alt: section.settings.team_heading
+            }}
+          {%- endif -%}
+        </div>
+        <div>
+          <p class="sub90-story__eyebrow">{{ section.settings.team_caption }}</p>
+          <h2 class="sub90-story__heading">{{ section.settings.team_heading }}</h2>
+          <p class="sub90-team__quote">{{ section.settings.team_quote }}</p>
+          <p class="sub90-team__signoff">{{ section.settings.team_signoff }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- if social_blocks.size > 0 -%}
+    <section class="sub90-social">
+      <div class="page-width">
+        <div class="sub90-section-head">
+          <p class="sub90-section-head__caption">{{ section.settings.social_caption }}</p>
+          <h2 class="sub90-section-head__title">{{ section.settings.social_heading }}</h2>
+          <a class="sub90-inline-note" href="{{ section.settings.social_link }}">{{ section.settings.social_link_label }}</a>
+        </div>
+        <div class="sub90-social__grid">
+          {%- for block in social_blocks -%}
+            <figure class="sub90-social__card" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 900
+                  | image_tag: loading: 'lazy', alt: block.settings.handle
+                }}
+              {%- endif -%}
+              <figcaption class="sub90-social__handle">{{ block.settings.handle }}</figcaption>
+            </figure>
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+  <section class="sub90-proof" id="sub90-proof">
+    <div class="page-width">
+      <div class="sub90-section-head">
+        <p class="sub90-section-head__caption">{{ section.settings.video_caption }}</p>
+        <h2 class="sub90-section-head__title">{{ section.settings.video_heading }}</h2>
+      </div>
+      <div class="sub90-video-card">
+        {%- if section.settings.video_cover != blank -%}
+          {{
+            section.settings.video_cover
+            | image_url: width: 1600
+            | image_tag: loading: 'lazy', alt: section.settings.video_heading
+          }}
+        {%- endif -%}
+        <a class="sub90-video-card__play" href="{{ section.settings.video_url }}">{{ section.settings.video_button }}</a>
+      </div>
+
+      <div class="sub90-section-head" style="margin-top: 5rem;">
+        <h2 class="sub90-section-head__title">{{ section.settings.comparison_heading }}</h2>
+      </div>
+      <div class="sub90-proof__comparison">
+        <table class="sub90-proof__table">
+          <thead>
+            <tr>
+              <th>{{ section.settings.comparison_col_1 }}</th>
+              <th>{{ section.settings.comparison_col_2 }}</th>
+              <th>{{ section.settings.comparison_col_3 }}</th>
+              <th>{{ section.settings.comparison_col_4 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for block in comparison_blocks -%}
+              <tr {{ block.shopify_attributes }}>
+                <td>{{ block.settings.feature }}</td>
+                <td>{{ block.settings.ours }}</td>
+                <td>{{ block.settings.taped }}</td>
+                <td>{{ block.settings.rack }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub90-proof__summary" style="margin-top: 5rem;">
+        <div class="sub90-proof__score">
+          <div class="sub90-proof__score-number">{{ section.settings.rating_number }}</div>
+          <div class="sub90-proof__score-stars">★★★★★</div>
+          <p class="sub90-proof__score-copy">{{ section.settings.rating_copy }}</p>
+        </div>
+      </div>
+
+      {%- if review_blocks.size > 0 -%}
+        <div class="sub90-proof__reviews" style="margin-top: 3rem;">
+          {%- for block in review_blocks -%}
+            <figure class="sub90-proof__review-card" {{ block.shopify_attributes }}>
+              <span class="sub90-proof__review-avatar">{{ block.settings.initials }}</span>
+              <p class="sub90-proof__review-name">{{ block.settings.name }}</p>
+              <p class="sub90-proof__review-meta">{{ block.settings.meta }}</p>
+              <div class="sub90-proof__review-stars">★★★★★</div>
+              <blockquote class="sub90-proof__review-quote">{{ block.settings.quote }}</blockquote>
+            </figure>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div style="margin-top: 5rem;">
+        <div class="sub90-section-head">
+          <h2 class="sub90-section-head__title">{{ section.settings.faq_heading }}</h2>
+        </div>
+        <div class="sub90-proof__faq">
+          {%- for block in faq_blocks -%}
+            <details class="sub90-proof__faq-item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary>
+                {{ block.settings.question }}
+                <span class="sub90-proof__faq-icon">+</span>
+              </summary>
+              <div class="sub90-proof__faq-answer">{{ block.settings.answer }}</div>
+            </details>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sub90-final-cta">
+    <div class="page-width">
+      <div class="sub90-section-head">
+        <h2 class="sub90-section-head__title">{{ section.settings.final_heading }}</h2>
+        <p class="sub90-final-cta__text">{{ section.settings.final_text }}</p>
+        <a class="sub90-final-cta__button" href="#sub90-buybox">{{ section.settings.final_button }}</a>
+        <div class="sub90-final-cta__meta">
+          <span>{{ section.settings.final_meta_1 }}</span>
+          <span>{{ section.settings.final_meta_2 }}</span>
+          <span>{{ section.settings.final_meta_3 }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 {% schema %}
 {
-  "name": "t:sections.disclosures.name",
-  "enabled_on": {
-    "templates": ["product"]
-  },
+  "name": "SUB90 Product Story",
+  "tag": "section",
+  "class": "section",
   "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "text", "id": "hotspots_caption", "label": "Hotspots caption", "default": "A closer look" },
+    { "type": "text", "id": "hotspots_heading", "label": "Hotspots heading", "default": "What you're actually getting" },
+    { "type": "image_picker", "id": "hotspots_image", "label": "Hotspots image" },
+    { "type": "text", "id": "problem_caption", "label": "Problem caption", "default": "The no-rep problem" },
+    { "type": "text", "id": "problem_heading", "label": "Problem heading", "default": "You don't lose Hyrox on the run. You lose it on no-reps." },
+    { "type": "textarea", "id": "problem_text_1", "label": "Problem text 1", "default": "Train against a taped square or a rack-mounted target at the wrong height and your depth and aim drift. Then race day comes, the judge's standard doesn't move, and every missed rep is wasted seconds you'll never claw back." },
+    { "type": "textarea", "id": "problem_text_2", "label": "Problem text 2", "default": "The SUB90 Wall Ball Target fixes the root cause. It bolts to any wall at true competition height, sits proud of the surface for real tactile feedback, and is sized to the standard, so the rep you drill at home is the rep that counts on the floor." },
+    { "type": "text", "id": "problem_cta", "label": "Problem CTA", "default": "Train at the standard. $34.99" },
+    { "type": "text", "id": "bundles_caption", "label": "Bundles caption", "default": "Build the whole station" },
+    { "type": "text", "id": "bundles_heading", "label": "Bundles heading", "default": "The target is the start. Here's the rest." },
+    { "type": "textarea", "id": "bundles_text", "label": "Bundles text", "default": "Somewhere to store the ball, grips for your hands, a way to mark the height. Grab it in one cart and save versus buying it piece by piece." },
+    { "type": "textarea", "id": "bundles_note", "label": "Bundles note", "default": "Training as a pair, or both heights? Grab the 2-pack and add the height marking kit in the buy box." },
+    { "type": "text", "id": "guarantee_caption", "label": "Guarantee caption", "default": "30 day" },
+    { "type": "text", "id": "guarantee_heading", "label": "Guarantee heading", "default": "The \"you chickened out\" guarantee" },
+    { "type": "textarea", "id": "guarantee_text", "label": "Guarantee text", "default": "Train on it for a full 30 days. If it isn't the most solid target you've hit, or anything is wrong with your order, email us and we'll make it right. Real humans, real promise." },
+    { "type": "image_picker", "id": "guarantee_image", "label": "Guarantee image" },
+    { "type": "text", "id": "team_caption", "label": "Team caption", "default": "From the people who make them" },
+    { "type": "text", "id": "team_heading", "label": "Team heading", "default": "We build these by hand, and we actually use them." },
+    { "type": "textarea", "id": "team_quote", "label": "Team quote", "default": "\"We have a lot of fun making these targets, and we love helping people get active. Every target is designed, tested, and shipped by our small crew in Frisco, Texas, because we train on these same walls. If anything is ever wrong with your order, email me and we'll make it right. That's a promise from a human, not a help desk.\"" },
+    { "type": "text", "id": "team_signoff", "label": "Team signoff", "default": "The SUB90 Fitness team - Frisco, TX - info@sub90fitness.com" },
+    { "type": "image_picker", "id": "team_image", "label": "Team image" },
+    { "type": "text", "id": "social_caption", "label": "Social caption", "default": "Where SUB90 lives" },
+    { "type": "text", "id": "social_heading", "label": "Social heading", "default": "Real walls. Real athletes." },
+    { "type": "url", "id": "social_link", "label": "Social link" },
+    { "type": "text", "id": "social_link_label", "label": "Social link label", "default": "Tag us @sub90fitness" },
+    { "type": "text", "id": "video_caption", "label": "Video caption", "default": "See it in action" },
+    { "type": "text", "id": "video_heading", "label": "Video heading", "default": "90 seconds from box to first rep" },
+    { "type": "url", "id": "video_url", "label": "Video URL" },
+    { "type": "text", "id": "video_button", "label": "Video button label", "default": "Play product demo video" },
+    { "type": "image_picker", "id": "video_cover", "label": "Video cover image" },
+    { "type": "text", "id": "comparison_heading", "label": "Comparison heading", "default": "Why athletes ditch the alternatives" },
+    { "type": "text", "id": "comparison_col_1", "label": "Comparison column 1", "default": "Feature" },
+    { "type": "text", "id": "comparison_col_2", "label": "Comparison column 2", "default": "SUB90 Target" },
+    { "type": "text", "id": "comparison_col_3", "label": "Comparison column 3", "default": "Taped square" },
+    { "type": "text", "id": "comparison_col_4", "label": "Comparison column 4", "default": "Rack-mounted target" },
+    { "type": "text", "id": "rating_number", "label": "Rating number", "default": "5.0" },
+    { "type": "textarea", "id": "rating_copy", "label": "Rating copy", "default": "Rated 5 out of 5 stars from 4 verified reviews." },
+    { "type": "text", "id": "faq_heading", "label": "FAQ heading", "default": "Questions, answered" },
+    { "type": "text", "id": "final_heading", "label": "Final heading", "default": "Squat low. Aim high." },
+    { "type": "textarea", "id": "final_text", "label": "Final text", "default": "Every rep should have purpose. Set the standard on your own wall and walk into race day with no doubt." },
+    { "type": "text", "id": "final_button", "label": "Final button label", "default": "Add to Cart. $34.99" },
+    { "type": "text", "id": "final_meta_1", "label": "Final meta 1", "default": "Free US shipping." },
+    { "type": "text", "id": "final_meta_2", "label": "Final meta 2", "default": "30-day returns." },
+    { "type": "text", "id": "final_meta_3", "label": "Final meta 3", "default": "Built by athletes in the USA." }
+  ],
+  "blocks": [
     {
-      "type": "paragraph",
-      "content": "t:sections.disclosures.settings.paragraph.content"
+      "type": "feature",
+      "name": "Feature band item",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Impact-Resistant Polymer" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "High-strength PETG built to absorb thousands of full-force wall ball reps." }
+      ]
     },
     {
-      "type": "text",
-      "id": "heading",
-      "label": "t:sections.disclosures.settings.heading.label",
-      "default": "t:sections.disclosures.name"
+      "type": "hotspot",
+      "name": "Hotspot item",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "1" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Impact-resistant PETG plate" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Takes thousands of full-force reps without cracking, in heat or cold." }
+      ]
     },
     {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        }
-      ],
-      "default": "h2",
-      "label": "t:sections.all.heading_size.label"
+      "type": "story",
+      "name": "Story row",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Mount it once" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Any wall becomes your station" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Studs, wood, concrete, or brick, indoor or outdoor. Set it at competition height regardless of your ceiling clearance and free up the space your rack was hogging.</p>" },
+        { "type": "text", "id": "note", "label": "Note", "default": "Tip: mounting on drywall without studs isn't recommended. These targets take a beating." }
+      ]
     },
     {
-      "type": "checkbox",
-      "id": "open_by_default",
-      "label": "t:sections.disclosures.settings.open_by_default.label",
-      "default": false
+      "type": "bundle",
+      "name": "Bundle card",
+      "settings": [
+        { "type": "text", "id": "badge", "label": "Badge", "default": "Most popular" },
+        { "type": "text", "id": "title", "label": "Title", "default": "HYROX Home Kit" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Target + speed jump rope + palm grips. The full race-prep package for one athlete." },
+        { "type": "text", "id": "price", "label": "Price", "default": "$74.99" },
+        { "type": "text", "id": "compare_price", "label": "Compare price", "default": "$89" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Choose this setup" }
+      ]
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
+      "type": "social",
+      "name": "Social tile",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "handle", "label": "Handle", "default": "@mike_trains" }
+      ]
     },
     {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "type": "comparison",
+      "name": "Comparison row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature", "default": "True competition height, any room" },
+        { "type": "text", "id": "ours", "label": "Ours", "default": "Yes" },
+        { "type": "text", "id": "taped", "label": "Taped square", "default": "Depends on ceiling" },
+        { "type": "text", "id": "rack", "label": "Rack-mounted", "default": "Limited by rack" }
+      ]
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "text", "id": "initials", "label": "Initials", "default": "MT" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Marcus T." },
+        { "type": "text", "id": "meta", "label": "Meta", "default": "Dallas, TX. Verified buyer" },
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "\"Mounted it on my garage's exterior brick in 20 minutes. Finally training at real comp height, and my no-reps at my last Hyrox dropped to zero.\"" }
+      ]
     },
     {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Can I mount it on drywall?" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "It mounts to studs, wood, concrete, or brick, indoor or outdoor. Mounting on drywall without studs isn't recommended, because these targets are built to take heavy impact and need a solid anchor." }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.disclosures.name"
+      "name": "SUB90 Product Story"
     }
   ]
 }
