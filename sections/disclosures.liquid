@@ -213,7 +213,7 @@
         {%- if section.settings.video_cover != blank -%}
           {{
             section.settings.video_cover
-            | image_url: width: 1600
+            | image_url: width: 1200
             | image_tag: loading: 'lazy', alt: section.settings.video_heading
           }}
         {%- endif -%}
@@ -338,7 +338,7 @@
     { "type": "text", "id": "video_caption", "label": "Video caption", "default": "See it in action" },
     { "type": "text", "id": "video_heading", "label": "Video heading", "default": "90 seconds from box to first rep" },
     { "type": "url", "id": "video_url", "label": "Video URL" },
-    { "type": "text", "id": "video_button", "label": "Video button label", "default": "Play product demo video" },
+    { "type": "text", "id": "video_button", "label": "Video button label", "default": "Play " },
     { "type": "image_picker", "id": "video_cover", "label": "Video cover image" },
     { "type": "text", "id": "comparison_heading", "label": "Comparison heading", "default": "Why athletes ditch the alternatives" },
     { "type": "text", "id": "comparison_col_1", "label": "Comparison column 1", "default": "Feature" },
