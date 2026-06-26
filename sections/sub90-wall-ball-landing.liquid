@@ -728,7 +728,7 @@
     if(items.length===1){
       appendHidden('id', items[0].id);
       appendHidden('quantity', items[0].quantity);
-      appendHidden('product-id', '{{ fallback_product_id }}');
+      appendHidden('product-id', '{{fallback_product_id}}');
       appendHidden('section-id', 'sub90-home-landing');
     } else {
       items.forEach(function(item,index){
